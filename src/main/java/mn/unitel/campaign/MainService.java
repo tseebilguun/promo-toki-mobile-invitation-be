@@ -1,0 +1,298 @@
+package mn.unitel.campaign;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.container.ContainerRequestContext;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.Response;
+import mn.unitel.campaign.jooq.tables.records.PromotionEntitlementsRecord;
+import mn.unitel.campaign.jooq.tables.records.ReferralInvitationsRecord;
+import mn.unitel.campaign.legacy.SmsService;
+import mn.unitel.campaign.models.*;
+import org.jboss.logging.Logger;
+import org.jooq.DSLContext;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+import static mn.unitel.campaign.jooq.Tables.REFERRAL_INVITATIONS;
+import static mn.unitel.campaign.jooq.Tables.PROMOTION_ENTITLEMENTS;
+
+@ApplicationScoped
+public class MainService {
+    @Inject
+    Logger logger;
+
+    @Inject
+    DSLContext dsl;
+
+    @Inject
+    JwtService jwtService;
+
+    @Inject
+    Helper helper;
+
+    @Inject
+    TokiService tokiService;
+
+    @Inject
+    SmsService smsService;
+
+    public Response getInfo(@Context ContainerRequestContext ctx) {
+        String msisdn = "";
+        String tokiId = "";
+
+        try {
+            msisdn = (String) ctx.getProperty("jwt.msisdn");
+            tokiId = (String) ctx.getProperty("jwt.tokiId");
+        } catch (Exception e) {
+            return Response.status(Response.Status.UNAUTHORIZED)
+                    .entity(new CustomResponse<>("Unauthorized", "Unauthorized", null))
+                    .build();
+        }
+
+        if (msisdn.isBlank() || tokiId.isBlank()) {
+            return Response.status(Response.Status.UNAUTHORIZED)
+                    .entity(new CustomResponse<>("Unauthorized", "Unauthorized", null))
+                    .build();
+        }
+
+        logger.infov("getInfo start: tokiId={0}, msisdn={1}", tokiId, msisdn);
+
+        try {
+            List<ReferralInvitationsRecord> invitations =
+                    dsl.selectFrom(REFERRAL_INVITATIONS)
+                            .where(REFERRAL_INVITATIONS.SENDER_TOKI_ID.eq(tokiId))
+                            .and(REFERRAL_INVITATIONS.SENDER_MSISDN.eq(msisdn))
+                            .orderBy(REFERRAL_INVITATIONS.SENT_AT.desc())
+                            .fetch();
+
+            logger.debugv("getInfo: fetched invitations count={0} for tokiId={1}, msisdn={2}",
+                    invitations.size(), tokiId, msisdn);
+
+            if (invitations.isEmpty()) {
+                logger.infov("getInfo: no invitations found for tokiId={0}, msisdn={1}", tokiId, msisdn);
+
+                return Response.ok()
+                        .entity(new CustomResponse<>(
+                                        "Success",
+                                        "No existing record found",
+                                        GetInfoData.builder()
+                                                .referrals(List.of())
+                                                .entitlementExpirationDate(null)
+                                                .hasActiveEntitlement(false)
+                                                .successReferralsCount(0)
+                                                .build()
+                                )
+                        )
+                        .build();
+            }
+
+            List<Referrals> referrals = invitations.stream()
+                    .map(r -> Referrals.builder()
+                            .id(r.getId())
+                            .invitedNumber(r.getReceiverMsisdn())
+                            .newNumber(r.getReceiverNewMsisdn())
+                            .status(r.getStatus())
+                            .operatorName(helper.getOperatorName(r.getReceiverMsisdn()))
+                            .expireDate(r.getExpiresAt())
+                            .build())
+                    .toList();
+
+            int successReferralsCount = (int) invitations.stream()
+                    .filter(r -> "ACCEPTED".equals(r.getStatus()))
+                    .count();
+
+            logger.infov("getInfo: referrals={0}, successReferralsCount={1} for tokiId={2}, msisdn={3}",
+                    referrals.size(), successReferralsCount, tokiId, msisdn);
+
+            Optional<PromotionEntitlementsRecord> latestEntitlementOpt =
+                    dsl.selectFrom(PROMOTION_ENTITLEMENTS)
+                            .where(PROMOTION_ENTITLEMENTS.TOKI_ID.eq(tokiId))
+                            .and(PROMOTION_ENTITLEMENTS.MSISDN.eq(msisdn))
+                            .and(PROMOTION_ENTITLEMENTS.END_AT.isNotNull())
+                            .orderBy(PROMOTION_ENTITLEMENTS.END_AT.desc())
+                            .fetchOptional();
+
+            LocalDateTime entitlementExpirationDate = latestEntitlementOpt
+                    .map(PromotionEntitlementsRecord::getEndAt)
+                    .orElse(null);
+
+            boolean hasActiveEntitlement = entitlementExpirationDate != null
+                    && entitlementExpirationDate.isAfter(LocalDateTime.now());
+
+            logger.infov("getInfo: entitlement found={0}, hasActiveEntitlement={1}, entitlementExpirationDate={2} for tokiId={3}, msisdn={4}",
+                    latestEntitlementOpt.isPresent(),
+                    hasActiveEntitlement,
+                    entitlementExpirationDate,
+                    tokiId,
+                    msisdn);
+
+            GetInfoData data = GetInfoData.builder()
+                    .referrals(referrals)
+                    .hasActiveEntitlement(hasActiveEntitlement)
+                    .successReferralsCount(successReferralsCount)
+                    .entitlementExpirationDate(entitlementExpirationDate)
+                    .build();
+
+            logger.infov("getInfo success: tokiId={0}, msisdn={1}", tokiId, msisdn);
+
+            return Response.ok()
+                    .entity(new CustomResponse<>(
+                            "Success",
+                            "Fetched existing records",
+                            data
+                    ))
+                    .build();
+
+        } catch (Exception e) {
+            logger.errorv(e, "getInfo failed: tokiId={0}, msisdn={1}", tokiId, msisdn);
+
+            return Response.serverError()
+                    .entity(new CustomResponse<>(
+                            "Failed",
+                            "Internal server error",
+                            null
+                    ))
+                    .build();
+        }
+    }
+
+    public Response login(LoginReq loginRequest) {
+        if (loginRequest.getMsisdn() == null || loginRequest.getMsisdn().isEmpty() || loginRequest.getTokiId() == null || loginRequest.getTokiId().isEmpty())
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(
+                            new CustomResponse<>(
+                                    "fail",
+                                    "Алдаа гарлаа",
+                                    null
+                            )
+                    )
+                    .build();
+
+        return Response.ok().entity(
+                        new CustomResponse<>(
+                                "success",
+                                "Login successful",
+                                jwtService.generateTokenWithPhone(
+                                        loginRequest.getTokiId(),
+                                        loginRequest.getMsisdn(),
+                                        loginRequest.getTokiId()
+                                )
+                        )
+                )
+                .build();
+    }
+
+    public Response sendInvite(InvitationReq req, @Context ContainerRequestContext ctx) {
+        String senderMsisdn = "";
+        String senderTokiId = "";
+
+        try {
+            senderMsisdn = (String) ctx.getProperty("jwt.msisdn");
+            senderTokiId = (String) ctx.getProperty("jwt.tokiId");
+        } catch (Exception e) {
+            return Response.status(Response.Status.UNAUTHORIZED)
+                    .entity(new CustomResponse<>("Unauthorized", "Unauthorized", null))
+                    .build();
+        }
+
+        if (req.getMsisdn().isBlank() || req.getMsisdn().length() != 8) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(
+                            new CustomResponse<>(
+                                    "fail",
+                                    "Утасны дугаараа шалгаад дахин оролдоно уу.",
+                                    null
+                            )
+                    )
+                    .build();
+        }
+
+        String receiverMsisdn = req.getMsisdn();
+
+        int count = dsl.fetchCount(
+                REFERRAL_INVITATIONS,
+                REFERRAL_INVITATIONS.RECEIVER_MSISDN.eq(receiverMsisdn)
+                        .and(REFERRAL_INVITATIONS.STATUS.in("SENT", "ACCEPTED"))
+        );
+
+        if (count > 0) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(
+                            new CustomResponse<>(
+                                    "fail",
+                                    receiverMsisdn + " дугаарт урилга илгээгдсэн байна.",
+                                    null
+                            )
+                    )
+                    .build();
+        }
+
+        if (senderMsisdn.isBlank() || senderTokiId.isBlank()) {
+            return Response.status(Response.Status.UNAUTHORIZED)
+                    .entity(new CustomResponse<>("Unauthorized", "Unauthorized", null))
+                    .build();
+        }
+
+
+        TokiUserInfo receiverTokiInfo = tokiService.getTokiId(receiverMsisdn);
+
+        if (!receiverTokiInfo.isSuccess()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(
+                            new CustomResponse<>(
+                                    "fail",
+                                    receiverMsisdn + " дугаарт Toki хаяг байхгүй байна.",
+                                    null
+                            )
+                    )
+                    .build();
+        }
+
+        TokiUserInfo senderTokiInfo = tokiService.getTokiId(senderMsisdn);
+        if (!senderTokiInfo.isSuccess()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(
+                            new CustomResponse<>(
+                                    "fail",
+                                    "Алдаа гарлаа. Дахин оролдоно уу.",
+                                    null
+                            )
+                    )
+                    .build();
+        }
+
+        ReferralInvitationsRecord inserted =
+                dsl.insertInto(REFERRAL_INVITATIONS)
+                        .set(REFERRAL_INVITATIONS.ID, java.util.UUID.randomUUID()) // required if DB has no default
+                        .set(REFERRAL_INVITATIONS.SENDER_MSISDN, senderMsisdn)
+                        .set(REFERRAL_INVITATIONS.SENDER_TOKI_ID, senderTokiId)
+                        .set(REFERRAL_INVITATIONS.RECEIVER_MSISDN, receiverMsisdn)
+                        .set(REFERRAL_INVITATIONS.RECEIVER_TOKI_ID, receiverTokiInfo.getTokiId())
+                        .set(REFERRAL_INVITATIONS.STATUS, "SENT")
+                        .returning()
+                        .fetchOne();
+
+        FormattedDateTime expireDateTime = FormattedDateTime.from(inserted.getExpiresAt());
+
+        tokiService.sendPushNoti(receiverTokiInfo.getTokiId(),
+                "Танд " + helper.extractFirstName(senderTokiInfo.getFullName()) + "-с урилга ирлээ",
+                senderMsisdn + " дугаартай " + helper.extractFirstName(senderTokiInfo.getFullName()) + " найзаас нь Toki Mobile-д " +
+                        "нэгдэх урилга илгээсэн байна. 55-тай дугаар аваад 30 хоногийн турш дата цэнэглэлт бүрээ 3 үржүүлж аваарай");
+
+
+        smsService.send("4477", senderMsisdn, receiverMsisdn + " dugaart Toki Mobile-d negdeh urilga ilgeegdlee. " +
+                "Urilgiin huchintei hugatsaa " + expireDateTime.getDate() + "-nii udriin " + expireDateTime.getTime() + "-d duusna shuu.", true);
+
+        return Response.ok()
+                .entity(
+                        new CustomResponse<>(
+                                "Success",
+                                "Invitation sent",
+                                null
+                        )
+                ).build();
+    }
+}
