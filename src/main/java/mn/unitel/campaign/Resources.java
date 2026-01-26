@@ -26,7 +26,14 @@ public class Resources {
     @GET
     @Path("/getInfo")
     public Response getInfo(@Context ContainerRequestContext ctx) {
-        return mainService.getInfo(ctx);
+        return mainService.getInfoByJwt(ctx);
+    }
+
+    // For DSD
+    @GET
+    @Path("/getGeneralInfo")
+    public Response getInfo(@QueryParam("msisdn") String msisdn, @QueryParam("tokiId") String tokiId) {
+        return mainService.getInfo(msisdn, tokiId);
     }
 
     @POST

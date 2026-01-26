@@ -39,7 +39,7 @@ public class MainService {
     @Inject
     SmsService smsService;
 
-    public Response getInfo(@Context ContainerRequestContext ctx) {
+    public Response getInfoByJwt(@Context ContainerRequestContext ctx) {
         String msisdn = "";
         String tokiId = "";
 
@@ -58,105 +58,7 @@ public class MainService {
                     .build();
         }
 
-        logger.infov("getInfo start: tokiId={0}, msisdn={1}", tokiId, msisdn);
-
-        try {
-            List<ReferralInvitationsRecord> invitations =
-                    dsl.selectFrom(REFERRAL_INVITATIONS)
-                            .where(REFERRAL_INVITATIONS.SENDER_TOKI_ID.eq(tokiId))
-                            .and(REFERRAL_INVITATIONS.SENDER_MSISDN.eq(msisdn))
-                            .orderBy(REFERRAL_INVITATIONS.SENT_AT.desc())
-                            .fetch();
-
-            logger.debugv("getInfo: fetched invitations count={0} for tokiId={1}, msisdn={2}",
-                    invitations.size(), tokiId, msisdn);
-
-            if (invitations.isEmpty()) {
-                logger.infov("getInfo: no invitations found for tokiId={0}, msisdn={1}", tokiId, msisdn);
-
-                return Response.ok()
-                        .entity(new CustomResponse<>(
-                                        "Success",
-                                        "No existing record found",
-                                        GetInfoData.builder()
-                                                .referrals(List.of())
-                                                .entitlementExpirationDate(null)
-                                                .hasActiveEntitlement(false)
-                                                .successReferralsCount(0)
-                                                .build()
-                                )
-                        )
-                        .build();
-            }
-
-            List<Referrals> referrals = invitations.stream()
-                    .map(r -> Referrals.builder()
-                            .id(r.getId())
-                            .invitedNumber(r.getReceiverMsisdn())
-                            .newNumber(r.getReceiverNewMsisdn())
-                            .status(r.getStatus())
-                            .operatorName(helper.getOperatorName(r.getReceiverMsisdn()))
-                            .expireDate(r.getExpiresAt())
-                            .build())
-                    .toList();
-
-            int successReferralsCount = (int) invitations.stream()
-                    .filter(r -> "ACCEPTED".equals(r.getStatus()))
-                    .count();
-
-            logger.infov("getInfo: referrals={0}, successReferralsCount={1} for tokiId={2}, msisdn={3}",
-                    referrals.size(), successReferralsCount, tokiId, msisdn);
-
-            Optional<PromotionEntitlementsRecord> latestEntitlementOpt =
-                    dsl.selectFrom(PROMOTION_ENTITLEMENTS)
-                            .where(PROMOTION_ENTITLEMENTS.TOKI_ID.eq(tokiId))
-                            .and(PROMOTION_ENTITLEMENTS.MSISDN.eq(msisdn))
-                            .and(PROMOTION_ENTITLEMENTS.END_AT.isNotNull())
-                            .orderBy(PROMOTION_ENTITLEMENTS.END_AT.desc())
-                            .fetchOptional();
-
-            LocalDateTime entitlementExpirationDate = latestEntitlementOpt
-                    .map(PromotionEntitlementsRecord::getEndAt)
-                    .orElse(null);
-
-            boolean hasActiveEntitlement = entitlementExpirationDate != null
-                    && entitlementExpirationDate.isAfter(LocalDateTime.now());
-
-            logger.infov("getInfo: entitlement found={0}, hasActiveEntitlement={1}, entitlementExpirationDate={2} for tokiId={3}, msisdn={4}",
-                    latestEntitlementOpt.isPresent(),
-                    hasActiveEntitlement,
-                    entitlementExpirationDate,
-                    tokiId,
-                    msisdn);
-
-            GetInfoData data = GetInfoData.builder()
-                    .referrals(referrals)
-                    .hasActiveEntitlement(hasActiveEntitlement)
-                    .successReferralsCount(successReferralsCount)
-                    .entitlementExpirationDate(entitlementExpirationDate)
-                    .build();
-
-            logger.infov("getInfo success: tokiId={0}, msisdn={1}", tokiId, msisdn);
-
-            return Response.ok()
-                    .entity(new CustomResponse<>(
-                            "Success",
-                            "Fetched existing records",
-                            data
-                    ))
-                    .build();
-
-        } catch (Exception e) {
-            logger.errorv(e, "getInfo failed: tokiId={0}, msisdn={1}", tokiId, msisdn);
-
-            return Response.serverError()
-                    .entity(new CustomResponse<>(
-                            "Failed",
-                            "Internal server error",
-                            null
-                    ))
-                    .build();
-        }
+        return getInfoGeneral(msisdn, tokiId);
     }
 
     public Response login(LoginReq loginRequest) {
@@ -294,5 +196,116 @@ public class MainService {
                                 null
                         )
                 ).build();
+    }
+
+    public Response getInfo(String msisdn, String tokiId) {
+        if (msisdn.isBlank() || tokiId.isBlank()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(new CustomResponse<>("Bad request", "Аль нэг утга хоосон байна.", null))
+                    .build();
+        }
+        return getInfoGeneral(msisdn, tokiId);
+    }
+
+    private Response getInfoGeneral(String msisdn, String tokiId) {
+        logger.infov("getInfo start: tokiId={0}, msisdn={1}", tokiId, msisdn);
+
+        try {
+            List<ReferralInvitationsRecord> invitations =
+                    dsl.selectFrom(REFERRAL_INVITATIONS)
+                            .where(REFERRAL_INVITATIONS.SENDER_TOKI_ID.eq(tokiId))
+                            .and(REFERRAL_INVITATIONS.SENDER_MSISDN.eq(msisdn))
+                            .orderBy(REFERRAL_INVITATIONS.SENT_AT.desc())
+                            .fetch();
+
+            logger.debugv("getInfo: fetched invitations count={0} for tokiId={1}, msisdn={2}",
+                    invitations.size(), tokiId, msisdn);
+
+            if (invitations.isEmpty()) {
+                logger.infov("getInfo: no invitations found for tokiId={0}, msisdn={1}", tokiId, msisdn);
+
+                return Response.ok()
+                        .entity(new CustomResponse<>(
+                                        "Success",
+                                        "No existing record found",
+                                        GetInfoData.builder()
+                                                .referrals(List.of())
+                                                .entitlementExpirationDate(null)
+                                                .hasActiveEntitlement(false)
+                                                .successReferralsCount(0)
+                                                .build()
+                                )
+                        )
+                        .build();
+            }
+
+            List<Referrals> referrals = invitations.stream()
+                    .map(r -> Referrals.builder()
+                            .id(r.getId())
+                            .invitedNumber(r.getReceiverMsisdn())
+                            .newNumber(r.getReceiverNewMsisdn())
+                            .status(r.getStatus())
+                            .operatorName(helper.getOperatorName(r.getReceiverMsisdn()))
+                            .expireDate(r.getExpiresAt())
+                            .build())
+                    .toList();
+
+            int successReferralsCount = (int) invitations.stream()
+                    .filter(r -> "ACCEPTED".equals(r.getStatus()))
+                    .count();
+
+            logger.infov("getInfo: referrals={0}, successReferralsCount={1} for tokiId={2}, msisdn={3}",
+                    referrals.size(), successReferralsCount, tokiId, msisdn);
+
+            Optional<PromotionEntitlementsRecord> latestEntitlementOpt =
+                    dsl.selectFrom(PROMOTION_ENTITLEMENTS)
+                            .where(PROMOTION_ENTITLEMENTS.TOKI_ID.eq(tokiId))
+                            .and(PROMOTION_ENTITLEMENTS.MSISDN.eq(msisdn))
+                            .and(PROMOTION_ENTITLEMENTS.END_AT.isNotNull())
+                            .orderBy(PROMOTION_ENTITLEMENTS.END_AT.desc())
+                            .fetchOptional();
+
+            LocalDateTime entitlementExpirationDate = latestEntitlementOpt
+                    .map(PromotionEntitlementsRecord::getEndAt)
+                    .orElse(null);
+
+            boolean hasActiveEntitlement = entitlementExpirationDate != null
+                    && entitlementExpirationDate.isAfter(LocalDateTime.now());
+
+            logger.infov("getInfo: entitlement found={0}, hasActiveEntitlement={1}, entitlementExpirationDate={2} for tokiId={3}, msisdn={4}",
+                    latestEntitlementOpt.isPresent(),
+                    hasActiveEntitlement,
+                    entitlementExpirationDate,
+                    tokiId,
+                    msisdn);
+
+            GetInfoData data = GetInfoData.builder()
+                    .referrals(referrals)
+                    .hasActiveEntitlement(hasActiveEntitlement)
+                    .successReferralsCount(successReferralsCount)
+                    .entitlementExpirationDate(entitlementExpirationDate)
+                    .build();
+
+            logger.infov("getInfo success: tokiId={0}, msisdn={1}", tokiId, msisdn);
+
+            return Response.ok()
+                    .entity(new CustomResponse<>(
+                            "Success",
+                            "Fetched existing records",
+                            data
+                    ))
+                    .build();
+
+        } catch (Exception e) {
+            logger.errorv(e, "getInfo failed: tokiId={0}, msisdn={1}", tokiId, msisdn);
+
+            return Response.serverError()
+                    .entity(new CustomResponse<>(
+                            "Failed",
+                            "Internal server error",
+                            null
+                    ))
+                    .build();
+        }
     }
 }
