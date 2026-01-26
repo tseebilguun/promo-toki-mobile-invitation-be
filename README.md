@@ -1,79 +1,83 @@
 # promo-toki-mobile-invitation-be
 
-Backend service for **Toki Mobile referral invitation campaign**.
+**Toki Mobile**-ийн *referral invitation* (урилгын) кампанит ажлын backend сервис.
 
-Built with **Quarkus** and **jOOQ** (PostgreSQL). It provides REST APIs to:
+Энэ сервис нь **Quarkus** дээр ажилладаг бөгөөд өгөгдлийн сантай **jOOQ** ашиглан (PostgreSQL) холбогдоно. Дараах REST API-уудыг санал болгоно:
 
-- **Login** and receive a JWT token
-- **Get referral info** (invitations + counts + entitlement status)
-- **Send referral invitation** to a receiver MSISDN (push notification + SMS)
-- **Get general info (DSD)** by providing msisdn/tokiId as query params (no JWT)
+- **Нэвтрэх** (login) → JWT авах
+- **Урилгын мэдээлэл авах** → илгээсэн урилгууд, тооллого, entitlement төлөв
+- **Урилга илгээх** → receiver MSISDN-д урилга үүсгээд push notification + SMS явуулах
+- **Ерөнхий мэдээлэл авах (DSD)** → JWT шаардахгүйгээр msisdn/tokiId-оор query хийж мэдээлэл авах
 
 ---
 
 ## Base URL
 
-All examples below use:
+Доорх бүх жишээний URL:
 
 - `http://10.21.68.222:6989`
 
 ---
 
-## Exposed APIs (from `Resources.java`)
+## Ил API-ууд (`Resources.java`-аас)
 
 - `POST /login`
-- `GET /getInfo` (JWT required)
-- `GET /getGeneralInfo` (for DSD, query params)
-- `POST /sendInvite` (JWT required)
+- `GET /getInfo` *(JWT шаардлагатай)*
+- `GET /getGeneralInfo` *(DSD зориулалттай, query params)*
+- `POST /sendInvite` *(JWT шаардлагатай)*
 
 ---
 
-## Authentication
+## Нэвтрэлт / Authentication
 
-- Call `POST /login` to get a JWT token (returned as a string in `data`)
-- Pass JWT to protected endpoints using:
+1) `POST /login` дуудсанаар JWT токен авна (`data` талбарт string хэлбэрээр ирнэ).
+2) JWT шаардлагатай endpoint-ууд дээр дараах header ашиглана:
 
 `Authorization: Bearer <JWT_TOKEN>`
 
-`GET /getInfo` and `POST /sendInvite` read user info from JWT context:
+`GET /getInfo` болон `POST /sendInvite` нь JWT context-оос дараах утгуудыг уншина:
 - `jwt.msisdn`
 - `jwt.tokiId`
 
 ---
 
-## Main Logic (High level)
+## Үндсэн логик (товч)
 
-### 1) Send Invite (`POST /sendInvite`)
-- Validates receiver msisdn (must be 8 digits)
-- Rejects if receiver already has an invitation with status `SENT` or `ACCEPTED`
-- Fetches receiver + sender Toki info from external Toki services
-- Inserts into `REFERRAL_INVITATIONS` with `STATUS='SENT'`
+### 1) Урилга илгээх (`POST /sendInvite`)
+- Receiver msisdn шалгана (8 оронтой байх ёстой)
+- Receiver дугаарт өмнө нь урилга явсан эсэхийг шалгана:
+    - `RECEIVER_MSISDN = receiverMsisdn` ба `STATUS IN ('SENT','ACCEPTED')` бол reject
+- Sender/Receiver-ийн Toki мэдээллийг гадаад Toki сервистэй холбогдож авна (`TokiService`)
+- `REFERRAL_INVITATIONS` хүснэгтэд `STATUS='SENT'` мөр insert хийнэ
     - `SENT_AT` default: `NOW()`
     - `EXPIRES_AT` default: `NOW() + 72 hours`
-- Sends:
+- Дараах мэдэгдлүүдийг явуулна:
     - Push notification (Toki General API)
     - SMS (legacy SMS service)
 
-### 2) Get Info (`GET /getInfo`)
-- Fetches all invitations sent by the logged-in user
-- Builds response:
-    - `referrals`: invitation list (receiver msisdn, status, operator, expiresAt)
-    - `successReferralsCount`: number of `ACCEPTED`
-    - Entitlement:
-        - Fetch latest row from `PROMOTION_ENTITLEMENTS` by `END_AT desc` for (tokiId, msisdn)
-        - If `END_AT > now` → `hasActiveEntitlement=true`
-        - Else → `hasActiveEntitlement=false`
-        - `entitlementExpirationDate` always returns latest `END_AT` if exists (even if expired)
+### 2) Мэдээлэл авах (`GET /getInfo`)
+- Нэвтэрсэн хэрэглэгчийн илгээсэн бүх урилгуудыг авна
+- Response-д:
+    - `referrals`: урилгын жагсаалт (receiver msisdn, status, operatorName, expiresAt)
+    - `successReferralsCount`: `STATUS='ACCEPTED'` тоо
+    - Entitlement мэдээлэл:
+        - `PROMOTION_ENTITLEMENTS`-ээс (`tokiId`, `msisdn`) хослолоор `END_AT desc` хамгийн сүүлийн мөрийг авна
+        - Хэрвээ `END_AT > now` бол → `hasActiveEntitlement=true`
+        - Үгүй бол → `hasActiveEntitlement=false`
+        - `entitlementExpirationDate` нь хамгийн сүүлийн `END_AT`-г буцаана (хугацаа нь дууссан байсан ч гэсэн)
 
-### 3) Get General Info (`GET /getGeneralInfo`) (DSD)
-- Same type of info as `/getInfo`, but msisdn/tokiId are passed as query parameters
-- Intended for DSD usage (does not depend on JWT context)
+### 3) Ерөнхий мэдээлэл авах (`GET /getGeneralInfo`) (DSD)
+- `/getInfo`-той ижил төрлийн мэдээлэл буцаана
+- Гэхдээ JWT context ашиглахгүй, query параметрээр авна:
+    - `msisdn`
+    - `tokiId`
+- DSD зориулалттай
 
 ---
 
-## cURL Examples
+## cURL Жишээ
 
-### 1) Login
+### 1) Нэвтрэх
 **POST** `/login`
 
 ```sh
@@ -86,7 +90,7 @@ curl -X POST "http://10.21.68.222:6989/login" \
   }'
 ```
 
-Example response (shape):
+Жишээ хариу (ерөнхий хэлбэр):
 ```json
 {
   "result": "success",
@@ -97,7 +101,7 @@ Example response (shape):
 
 ---
 
-### 2) Get Info (JWT)
+### 2) Мэдээлэл авах (JWT)
 **GET** `/getInfo`
 
 ```sh
@@ -106,7 +110,7 @@ curl -X GET "http://10.21.68.222:6989/getInfo" \
   -H "Accept: application/json"
 ```
 
-Example response (shape):
+Жишээ хариу (ерөнхий хэлбэр):
 ```json
 {
   "result": "Success",
@@ -131,7 +135,7 @@ Example response (shape):
 
 ---
 
-### 3) Get General Info (DSD)
+### 3) Ерөнхий мэдээлэл авах (DSD)
 **GET** `/getGeneralInfo?msisdn=...&tokiId=...`
 
 ```sh
@@ -139,11 +143,11 @@ curl -X GET "http://10.21.68.222:6989/getGeneralInfo?msisdn=88112233&tokiId=TOKI
   -H "Accept: application/json"
 ```
 
-Response shape is the same as `/getInfo` (returns `CustomResponse<GetInfoData>`).
+Хариу нь `/getInfo`-той ижил бүтэцтэй (`CustomResponse<GetInfoData>`).
 
 ---
 
-### 4) Send Invite (JWT)
+### 4) Урилга илгээх (JWT)
 **POST** `/sendInvite`
 
 ```sh
@@ -156,7 +160,7 @@ curl -X POST "http://10.21.68.222:6989/sendInvite" \
   }'
 ```
 
-Example success response (shape):
+Жишээ амжилттай хариу (ерөнхий хэлбэр):
 ```json
 {
   "result": "Success",
@@ -164,7 +168,7 @@ Example success response (shape):
 }
 ```
 
-Example failure response (already invited / accepted):
+Жишээ алдаа (өмнө нь урилга илгээгдсэн / ACCEPTED болсон):
 ```json
 {
   "result": "fail",
@@ -174,7 +178,7 @@ Example failure response (already invited / accepted):
 
 ---
 
-## Dev Run (Quarkus)
+## Хөгжүүлэлтийн орчинд ажиллуулах (Quarkus)
 
 ```sh
 ./mvnw quarkus:dev
@@ -182,7 +186,7 @@ Example failure response (already invited / accepted):
 
 ---
 
-## Notes
+## Тэмдэглэл
 
-- If PostgreSQL tables use `DEFAULT gen_random_uuid()` for `ID`, you can omit setting `ID` in jOOQ inserts and still use `.returning()` to get generated values back.
-- API paths are defined in `src/main/java/mn/unitel/campaign/Resources.java`.
+- Хэрвээ PostgreSQL хүснэгтүүд `ID` дээрээ `DEFAULT gen_random_uuid()` ашиглаж байгаа бол jOOQ insert хийх үед `ID`-г заавал set хийх шаардлагагүй. Мөн `.returning()` ашиглаад үүссэн мөрийн `ID`, `SENT_AT`, `EXPIRES_AT` зэрэг default утгуудыг буцааж авч болно.
+- API замууд `src/main/java/mn/unitel/campaign/Resources.java` файл дээр тодорхойлогдсон.
