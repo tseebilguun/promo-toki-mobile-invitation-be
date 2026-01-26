@@ -2,92 +2,91 @@
 
 Backend service for **Toki Mobile referral invitation campaign**.
 
-This service is built with **Quarkus** and uses **jOOQ** to access a PostgreSQL database.  
-It exposes a small REST API used by the client to:
+Built with **Quarkus** and **jOOQ** (PostgreSQL). It provides REST APIs to:
 
-- **Login** and receive a JWT (used for authenticated endpoints)
-- **Get referral info** for the logged-in user (sent invitations, counts, entitlement status)
-- **Send invitation** to a receiver MSISDN (also triggers push notification + SMS)
-
----
-
-## Tech Stack
-
-- Java + Quarkus
-- JAX-RS (REST endpoints)
-- jOOQ (DB access)
-- PostgreSQL
-- MicroProfile Rest Client (Toki external APIs)
-- JWT-based auth (token returned from `/login`)
+- **Login** and receive a JWT token
+- **Get referral info** (invitations + counts + entitlement status)
+- **Send referral invitation** to a receiver MSISDN (push notification + SMS)
+- **Get general info (DSD)** by providing msisdn/tokiId as query params (no JWT)
 
 ---
 
-## Main Flow (Referral Program)
+## Base URL
 
-### Send Invite
-1. User calls `POST /sendInvite` with receiver `msisdn`
-2. Service checks if there is already an active invitation for that receiver:
-    - counts rows where `RECEIVER_MSISDN = receiverMsisdn` and `STATUS IN ('SENT','ACCEPTED')`
-3. Service fetches receiver and sender Toki user info via `TokiService`
-4. Service inserts a row into `REFERRAL_INVITATIONS` with `STATUS='SENT'`
-    - `SENT_AT` is set by DB default
-    - `EXPIRES_AT` is set by DB default (`NOW() + 72 hours`)
-5. Sends:
+All examples below use:
+
+- `http://10.21.68.222:6989`
+
+---
+
+## Exposed APIs (from `Resources.java`)
+
+- `POST /login`
+- `GET /getInfo` (JWT required)
+- `GET /getGeneralInfo` (for DSD, query params)
+- `POST /sendInvite` (JWT required)
+
+---
+
+## Authentication
+
+- Call `POST /login` to get a JWT token (returned as a string in `data`)
+- Pass JWT to protected endpoints using:
+
+`Authorization: Bearer <JWT_TOKEN>`
+
+`GET /getInfo` and `POST /sendInvite` read user info from JWT context:
+- `jwt.msisdn`
+- `jwt.tokiId`
+
+---
+
+## Main Logic (High level)
+
+### 1) Send Invite (`POST /sendInvite`)
+- Validates receiver msisdn (must be 8 digits)
+- Rejects if receiver already has an invitation with status `SENT` or `ACCEPTED`
+- Fetches receiver + sender Toki info from external Toki services
+- Inserts into `REFERRAL_INVITATIONS` with `STATUS='SENT'`
+    - `SENT_AT` default: `NOW()`
+    - `EXPIRES_AT` default: `NOW() + 72 hours`
+- Sends:
     - Push notification (Toki General API)
-    - SMS message (legacy SMS service)
+    - SMS (legacy SMS service)
 
-### Get Info
-1. User calls `GET /getInfo`
-2. Service reads `jwt.msisdn` and `jwt.tokiId` from request context
-3. Fetches all invitations for the sender (`SENDER_TOKI_ID` + `SENDER_MSISDN`)
-4. Builds response:
-    - `referrals`: list of sent invitations
-    - `successReferralsCount`: count of rows with `STATUS='ACCEPTED'`
-    - entitlement fields based on latest `PROMOTION_ENTITLEMENTS.END_AT` for (`TOKI_ID`, `MSISDN`)
-        - If `END_AT > now`: `hasActiveEntitlement = true`
-        - Else: `hasActiveEntitlement = false`
-        - `entitlementExpirationDate = END_AT` (even when expired)
+### 2) Get Info (`GET /getInfo`)
+- Fetches all invitations sent by the logged-in user
+- Builds response:
+    - `referrals`: invitation list (receiver msisdn, status, operator, expiresAt)
+    - `successReferralsCount`: number of `ACCEPTED`
+    - Entitlement:
+        - Fetch latest row from `PROMOTION_ENTITLEMENTS` by `END_AT desc` for (tokiId, msisdn)
+        - If `END_AT > now` → `hasActiveEntitlement=true`
+        - Else → `hasActiveEntitlement=false`
+        - `entitlementExpirationDate` always returns latest `END_AT` if exists (even if expired)
 
----
-
-## Database Tables (High Level)
-
-- `REFERRAL_INVITATIONS`: sent/accepted/expired invitations, 72h expiry default
-- `PROMOTION_ENTITLEMENTS`: promo entitlement period for user (start/end)
-- `RECHARGES`: recharge history (bonus info, etc.)
+### 3) Get General Info (`GET /getGeneralInfo`) (DSD)
+- Same type of info as `/getInfo`, but msisdn/tokiId are passed as query parameters
+- Intended for DSD usage (does not depend on JWT context)
 
 ---
 
-## Running the application (dev)
+## cURL Examples
+
+### 1) Login
+**POST** `/login`
 
 ```sh
-./mvnw quarkus:dev
-```
-
-Default:
-- App: `http://localhost:8080`
-- Dev UI (dev mode only): `http://localhost:8080/q/dev/`
-
----
-
-## API
-
-Base URL: `http://localhost:8080`
-
-### 1) Login (get JWT)
-**POST** `/login`  
-Body: `LoginReq`
-
-```sh
-curl -X POST "http://localhost:8080/login" \
+curl -X POST "http://10.21.68.222:6989/login" \
   -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
   -d '{
     "msisdn": "88112233",
     "tokiId": "TOKI_ID_123"
   }'
 ```
 
-Example success response (shape):
+Example response (shape):
 ```json
 {
   "result": "success",
@@ -98,17 +97,16 @@ Example success response (shape):
 
 ---
 
-### 2) Get referral info (authenticated)
-**GET** `/getInfo`  
-Auth: `Authorization: Bearer <token>`
+### 2) Get Info (JWT)
+**GET** `/getInfo`
 
 ```sh
-curl -X GET "http://localhost:8080/getInfo" \
+curl -X GET "http://10.21.68.222:6989/getInfo" \
   -H "Authorization: Bearer <JWT_TOKEN_STRING>" \
   -H "Accept: application/json"
 ```
 
-Example success response (shape):
+Example response (shape):
 ```json
 {
   "result": "Success",
@@ -131,21 +129,28 @@ Example success response (shape):
 }
 ```
 
-Notes:
-- `operatorName` is derived from MSISDN prefix in `Helper.getOperatorName(...)`
-- `expireDate` comes from `REFERRAL_INVITATIONS.EXPIRES_AT`
+---
+
+### 3) Get General Info (DSD)
+**GET** `/getGeneralInfo?msisdn=...&tokiId=...`
+
+```sh
+curl -X GET "http://10.21.68.222:6989/getGeneralInfo?msisdn=88112233&tokiId=TOKI_ID_123" \
+  -H "Accept: application/json"
+```
+
+Response shape is the same as `/getInfo` (returns `CustomResponse<GetInfoData>`).
 
 ---
 
-### 3) Send invite (authenticated)
-**POST** `/sendInvite`  
-Auth: `Authorization: Bearer <token>`  
-Body: `InvitationReq`
+### 4) Send Invite (JWT)
+**POST** `/sendInvite`
 
 ```sh
-curl -X POST "http://localhost:8080/sendInvite" \
+curl -X POST "http://10.21.68.222:6989/sendInvite" \
   -H "Authorization: Bearer <JWT_TOKEN_STRING>" \
   -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
   -d '{
     "msisdn": "99112233"
   }'
@@ -159,7 +164,7 @@ Example success response (shape):
 }
 ```
 
-Example failure response (already invited):
+Example failure response (already invited / accepted):
 ```json
 {
   "result": "fail",
@@ -169,11 +174,15 @@ Example failure response (already invited):
 
 ---
 
-## Notes / TODOs
+## Dev Run (Quarkus)
 
-- Consider removing manual UUID generation in inserts if DB default is enabled for `ID`:
-    - PostgreSQL: `DEFAULT gen_random_uuid()` (requires `pgcrypto` extension)
-- Consider using DB time (`current_timestamp`) for entitlement comparisons to avoid time drift.
-- Add OpenAPI / Swagger for easier API discovery.
+```sh
+./mvnw quarkus:dev
+```
 
 ---
+
+## Notes
+
+- If PostgreSQL tables use `DEFAULT gen_random_uuid()` for `ID`, you can omit setting `ID` in jOOQ inserts and still use `.returning()` to get generated values back.
+- API paths are defined in `src/main/java/mn/unitel/campaign/Resources.java`.
