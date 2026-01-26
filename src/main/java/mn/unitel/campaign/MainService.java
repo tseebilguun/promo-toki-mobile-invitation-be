@@ -15,6 +15,7 @@ import org.jooq.DSLContext;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import static mn.unitel.campaign.jooq.Tables.REFERRAL_INVITATIONS;
 import static mn.unitel.campaign.jooq.Tables.PROMOTION_ENTITLEMENTS;
@@ -87,7 +88,7 @@ public class MainService {
                 .build();
     }
 
-    public Response sendInvite(InvitationReq req, @Context ContainerRequestContext ctx) {
+    public Response sendInvitation(InvitationReq req, @Context ContainerRequestContext ctx) {
         String senderMsisdn = "";
         String senderTokiId = "";
 
@@ -307,5 +308,61 @@ public class MainService {
                     ))
                     .build();
         }
+    }
+
+    public Response deleteInvitation(DeleteInvitationReq req, ContainerRequestContext ctx) {
+        UUID invitationId = req.getInvitationId();
+
+        String senderMsisdn;
+        String senderTokiId;
+
+        try {
+            senderMsisdn = (String) ctx.getProperty("jwt.msisdn");
+            senderTokiId = (String) ctx.getProperty("jwt.tokiId");
+        } catch (Exception e) {
+            return Response.status(Response.Status.UNAUTHORIZED)
+                    .entity(new CustomResponse<>("Unauthorized", "Unauthorized", null))
+                    .build();
+        }
+
+        if (senderMsisdn == null || senderMsisdn.isBlank() || senderTokiId == null || senderTokiId.isBlank()) {
+            return Response.status(Response.Status.UNAUTHORIZED)
+                    .entity(new CustomResponse<>("Unauthorized", "Unauthorized", null))
+                    .build();
+        }
+
+        ReferralInvitationsRecord deleted =
+                dsl.deleteFrom(REFERRAL_INVITATIONS)
+                        .where(REFERRAL_INVITATIONS.ID.eq(invitationId))
+                        .and(REFERRAL_INVITATIONS.SENDER_MSISDN.eq(senderMsisdn))
+                        .and(REFERRAL_INVITATIONS.SENDER_TOKI_ID.eq(senderTokiId))
+                        .returning()
+                        .fetchOne();
+
+        if (deleted == null) {
+            logger.warnv("Referral invitation delete attempted but no row found or not owned. id={0}, senderMsisdn={1}, senderTokiId={2}",
+                    invitationId, senderMsisdn, senderTokiId);
+
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(new CustomResponse<>("fail", "Invitation not found", null))
+                    .build();
+        }
+
+        logger.infov(
+                "Referral invitation deleted: id={0}, status={1}, senderMsisdn={2}, senderTokiId={3}, receiverMsisdn={4}, receiverTokiId={5}, sentAt={6}, expiresAt={7}, acceptedAt={8}",
+                deleted.getId(),
+                deleted.getStatus(),
+                deleted.getSenderMsisdn(),
+                deleted.getSenderTokiId(),
+                deleted.getReceiverMsisdn(),
+                deleted.getReceiverTokiId(),
+                deleted.getSentAt(),
+                deleted.getExpiresAt(),
+                deleted.getAcceptedAt()
+        );
+
+        return Response.ok()
+                .entity(new CustomResponse<>("Success", "Invitation deleted", null))
+                .build();
     }
 }

@@ -1,0 +1,560 @@
+{
+  "listProduct": {
+    "api_type": "perest",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/productCB?",
+    "api_method": "GET",
+    "api_description": "listProduct",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "productHierarchy": {
+    "api_type": "cbapi",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/getProductHierarchy?",
+    "api_method": "GET",
+    "api_description": "productHierarchy",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "postProductOrder": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/productOrder",
+    "api_method": "POST",
+    "api_description": "postProduct",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "submitOrder": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/submit",
+    "api_method": "POST",
+    "api_description": "submitOrder",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "postCustomerPayment": {
+    "api_type": "paymentCB",
+    "api_port": "8354",
+    "api_suburl": "/trerest_in/api/v1/paymentCB",
+    "api_method": "POST",
+    "api_description": "post customer payment",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "createOneOffCharge": {
+    "api_type": "cbapi",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/oneoffcharge",
+    "api_method": "POST",
+    "api_description": "createOneOffCharge",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "fetchServiceDetails": {
+    "api_type": "cbapi",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/fetchServiceDetails?",
+    "api_method": "GET",
+    "api_description": "fetchServiceDetails",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "customerInfo": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/customer/",
+    "api_method": "GET",
+    "api_description": "customerInfo",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "getParty": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/individual/",
+    "api_method": "GET",
+    "api_description": "Get Party API",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "listCustomerInfo": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/customer?",
+    "api_method": "GET",
+    "api_description": "List Customer API",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "listResource": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/resource?",
+    "api_method": "GET",
+    "api_description": "listResource",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "patchResource": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/resource/",
+    "api_method": "PATCH",
+    "api_description": "patchResource",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "fetchCustAndServiceDetails": {
+    "api_type": "cbapi",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/fetchCustAndServiceDetails?",
+    "api_method": "GET",
+    "api_description": "Get all phone infos using phone number",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "patchProductOrder": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/productOrder/",
+    "api_method": "PATCH",
+    "api_description": "patchProduct",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "getBillingAccount": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/billingAccount?",
+    "api_method": "GET",
+    "api_description": "getBillingAccount",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "getBillingAccountCB": {
+    "api_type": "cbapi",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/billingAccountCB?",
+    "api_method": "GET",
+    "api_description": "getBillingAccountCB",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "getAllowanceUpdate": {
+    "api_type": "cbapi",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/allowanceUpdate",
+    "api_method": "PATCH",
+    "api_description": "getAllowanceUpdate",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "getConsumptionReport": {
+    "api_type": "cbapi",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/usageConsumptionReportCB/",
+    "api_method": "GET",
+    "api_description": "getConsumptionReport",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "expandHierarchyByAccountName": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/expandHierarchyByAccountName",
+    "api_method": "POST",
+    "api_description": "expandHierarchyByAccountName",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "uPointPercent": {
+    "api_type": "cbapi",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/upointEarnPercent?",
+    "api_method": "GET",
+    "api_description": "uPointPercent",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "deductUPoint": {
+    "api_type": "u-point",
+    "api_port": "5000",
+    "api_suburl": "/upoint/spend",
+    "api_method": "POST",
+    "api_description": "deductUPoint",
+    "authorization": "",
+    "URL": "http://10.21.68.210"
+  },
+  "additionUPoint": {
+    "api_type": "u-point",
+    "api_port": "5000",
+    "api_suburl": "/upoint/bonus",
+    "api_method": "POST",
+    "api_description": "additionUPoint",
+    "authorization": "",
+    "URL": "http://10.21.68.210"
+  },
+  "balanceUPoint": {
+    "api_type": "u-point",
+    "api_port": "5000",
+    "api_suburl": "/upoint/balance",
+    "api_method": "POST",
+    "api_description": "balanceUPoint",
+    "authorization": "",
+    "URL": "http://10.21.68.210"
+  },
+  "cancelUPoint": {
+    "api_type": "u-point",
+    "api_port": "5000",
+    "api_suburl": "/upoint/cancel/",
+    "api_method": "GET",
+    "api_description": "cancelUPoint",
+    "authorization": "",
+    "URL": "http://10.21.68.210"
+  },
+  "diameterReserve": {
+    "api_type": "diameter",
+    "api_port": "9098",
+    "api_suburl": "/ccg/api/reserve",
+    "api_method": "POST",
+    "api_description": "Diameter charge: Reserve",
+    "authorization": "Basic c2hpamlyOnNoaWppci4xMjM=",
+    "URL": "http://10.21.68.82"
+  },
+  "diameterDebit": {
+    "api_type": "diameter",
+    "api_port": "9098",
+    "api_suburl": "/ccg/api/debit/",
+    "api_method": "POST",
+    "api_description": "Diameter charge: Debit",
+    "authorization": "Basic c2hpamlyOnNoaWppci4xMjM=",
+    "URL": "http://10.21.68.82"
+  },
+  "diameterRelease": {
+    "api_type": "diameter",
+    "api_port": "9098",
+    "api_suburl": "/ccg/api/release/",
+    "api_method": "POST",
+    "api_description": "Diameter charge: Reserve",
+    "authorization": "Basic c2hpamlyOnNoaWppci4xMjM=",
+    "URL": "http://10.21.68.82"
+  },
+  "patchProductOrderCBAPI": {
+    "api_type": "cbapi",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/productOrderCBAPI",
+    "api_method": "PATCH",
+    "api_description": "patchProductOrderCBAPI",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "getCUGServiceName": {
+    "api_type": "perest",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/cug_CB?",
+    "api_method": "GET",
+    "api_description": "getCUGServiceName",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "getCUGId": {
+    "api_type": "perest",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/cug_CB?",
+    "api_method": "GET",
+    "api_description": "getCUGId",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "listCustomerPayment": {
+    "api_type": "cbapi",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/paymentCB?",
+    "api_method": "GET",
+    "api_description": "listCustomerPayment",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "getCustomerTag": {
+    "api_type": "cbapi",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/fCustomerTag?",
+    "api_method": "GET",
+    "api_description": "get CustomerDynamicTag",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "patchCustomerTag": {
+    "api_type": "cbapi",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/fCustomerTag?",
+    "api_method": "PATCH",
+    "api_description": "update CustomerDynamicPayment",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "deleteCustomerTag": {
+    "api_type": "cbapi",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/fCustomerTag?",
+    "api_method": "DELETE",
+    "api_description": "update CustomerDynamicPayment",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "getProductOffering": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/productOffering?",
+    "api_method": "GET",
+    "api_description": "get Product Offering",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "getQuote": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/quote",
+    "api_method": "POST",
+    "api_description": "get quote",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "postCustomerPaymentCheck": {
+    "api_type": "perest",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/paymentCB",
+    "api_method": "POST",
+    "api_description": "post customer payment",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "createCustomerConsumer": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/customer",
+    "api_method": "POST",
+    "api_description": "post customer payment",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "cugInfo": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/manageCUG_CB",
+    "api_method": "PATCH",
+    "api_description": "CUG API",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "listUsageDetails": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/usage?",
+    "api_method": "GET",
+    "api_description": "get list usage details",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "fetchAccountDetails": {
+    "api_type": "cbapi",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/fetchAccountDetails?",
+    "api_method": "GET",
+    "api_description": "fetch account details",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "getOnlyTopLevelOfferIdProductOffering": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/productOffering/",
+    "api_method": "GET",
+    "api_description": "get only top level offer id Product Offering",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "postParty": {
+    "api_type": "perest",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/individual/",
+    "api_method": "POST",
+    "api_description": "Post Party API",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "postCancelOrder": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/cancelProductOrder",
+    "api_method": "POST",
+    "api_description": "Post Cancel Order API",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "getProductOrder": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/productOrder/",
+    "api_method": "GET",
+    "api_description": "Get Product Order API",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "listProductSN": {
+    "api_type": "perest",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/productCB?",
+    "api_method": "GET",
+    "api_description": "Get List Product SN",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "submitDailyReport": {
+    "api_type": "dailyReport",
+    "api_port": "8011",
+    "api_suburl": "/api/v1/report",
+    "api_method": "POST",
+    "api_description": "Submit Daily Report API",
+    "authorization": "",
+    "URL": "http://10.21.64.120"
+  },
+  "submitVAT": {
+    "api_type": "vatReport",
+    "api_port": "9000",
+    "api_suburl": "/put",
+    "api_method": "POST",
+    "api_description": "Submit VAT Report API",
+    "authorization": "",
+    "URL": "http://10.21.64.231"
+  },
+  "getAllTopLevelOfferIdProductOffering": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/productOffering?",
+    "api_method": "GET",
+    "api_description": "get all top level offer id Product Offering",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "patchCustomer": {
+    "api_type": "perest",
+    "api_port": "8336",
+    "api_suburl": "/trerest_in/api/v1/customer/",
+    "api_method": "PATCH",
+    "api_description": "patch customer",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "customerBillCB": {
+    "api_type": "perest",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/customerBillCB?",
+    "api_method": "GET",
+    "api_description": "get customer bill CB",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "customerBills": {
+    "api_type": "perest",
+    "api_port": "8316",
+    "api_suburl": "/trerest_in/api/v1/customerBills",
+    "api_method": "PATCH",
+    "api_description": "patch customer bills",
+    "authorization": "Basic dHJlcmVzdDp0cmVyZXN0MQ==",
+    "URL": "http://10.21.193.40"
+  },
+  "getNewCugInfo": {
+    "api_type": "newCug",
+    "api_port": "8029",
+    "api_suburl": "/cug/service/",
+    "api_method": "GET",
+    "api_description": "get new cug info",
+    "authorization": "",
+    "URL": "http://10.21.64.119"
+  },
+  "getNewCugInfoByCugId": {
+    "api_type": "newCug",
+    "api_port": "8029",
+    "api_suburl": "/cug/group/",
+    "api_method": "GET",
+    "api_description": "get new cug info",
+    "authorization": "",
+    "URL": "http://10.21.64.119"
+  },
+  "createNewCug": {
+    "api_type": "newCug",
+    "api_port": "8029",
+    "api_suburl": "/cug/group",
+    "api_method": "POST",
+    "api_description": "create new cug",
+    "authorization": "",
+    "URL": "http://10.21.64.119"
+  },
+  "addMemberToNewCug": {
+    "api_type": "newCug",
+    "api_port": "8029",
+    "api_suburl": "/cug/member",
+    "api_method": "POST",
+    "api_description": "add member to new cug",
+    "authorization": "",
+    "URL": "http://10.21.64.119"
+  },
+  "deleteNewCug": {
+    "api_type": "newCug",
+    "api_port": "8029",
+    "api_suburl": "/cug/group/",
+    "api_method": "DELETE",
+    "api_description": "delete new cug",
+    "authorization": "",
+    "URL": "http://10.21.64.119"
+  },
+  "removeMemberFromNewCug": {
+    "api_type": "newCug",
+    "api_port": "8029",
+    "api_suburl": "/cug/member",
+    "api_method": "DELETE",
+    "api_description": "remove member from new cug",
+    "authorization": "",
+    "URL": "http://10.21.64.119"
+  },
+  "uPointPercentNew": {
+    "api_type": "new uPoint percent",
+    "api_port": "8029",
+    "api_suburl": "/cug/upointEarnPercent?",
+    "api_method": "GET",
+    "api_description": "uPointPercent",
+    "authorization": "",
+    "URL": "http://10.21.64.119"
+  },
+  "fetchServiceDetailsContactX": {
+    "api_type": "contactX",
+    "api_port": "8111",
+    "api_suburl": "/public/userInfo?",
+    "api_method": "GET",
+    "api_description": "fetchServiceDetailsContactX",
+    "authorization": "Basic dW5pdGVsOkJRc0JDZXJnOUc=",
+    "URL": "http://10.21.68.73"
+  },
+  "ordersUnitelMN": {
+    "api_type": "unitelMN",
+    "api_port": "3003",
+    "api_suburl": "/v1/orders",
+    "api_method": "POST",
+    "api_description": "changePricePlanUnitelMN",
+    "authorization": "Basic Y2FtcGFpZ246WVdSdGFXNDZjMlZqY21WME1USXo=",
+    "URL": "http://10.21.68.103"
+  },
+  "orderWithParamUnitelMN": {
+    "api_type": "unitelMN",
+    "api_port": "3003",
+    "api_suburl": "/v1/orders/",
+    "api_method": "POST",
+    "api_description": "changePricePlanUnitelMN",
+    "authorization": "Basic Y2FtcGFpZ246WVdSdGFXNDZjMlZqY21WME1USXo=",
+    "URL": "http://10.21.68.103"
+  }
+}

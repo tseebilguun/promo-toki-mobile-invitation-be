@@ -6,6 +6,7 @@ import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import mn.unitel.campaign.models.DeleteInvitationReq;
 import mn.unitel.campaign.models.InvitationReq;
 import mn.unitel.campaign.models.LoginReq;
 
@@ -37,8 +38,14 @@ public class Resources {
     }
 
     @POST
-    @Path("/sendInvite")
-    public Response sendInvite(InvitationReq req, @Context ContainerRequestContext ctx){
-        return mainService.sendInvite(req, ctx);
+    @Path("/sendInvitation")
+    public Response sendInvitation(InvitationReq req, @Context ContainerRequestContext ctx){
+        return mainService.sendInvitation(req, ctx);
+    }
+
+    @DELETE
+    @Path("deleteInvitation")
+    public Response deleteInvitation(DeleteInvitationReq req, @Context ContainerRequestContext ctx) {
+        return mainService.deleteInvitation(req, ctx);
     }
 }
