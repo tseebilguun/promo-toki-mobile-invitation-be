@@ -1,0 +1,46 @@
+{
+  "prod": {
+    "rabbitmq": {
+      "username": "sv_noti_client_test",
+      "password": "sv_noti_client_test",
+      "vhost": "/",
+      "host": "10.21.68.81",
+      "port": 5672
+    },
+    "exchange": {
+      "name": "sv_noti",
+      "type": "headers",
+      "queue": {
+        "name": "quarkus-rabbitmq-test-tse.status-change",
+        "routing_key": "noti",
+        "ack": true,
+        "params": {
+          "notificationType": "BASE_PRODUCT_STATUS_CHANGE",
+          "notificationCategory": "SERVICE"
+        }
+      }
+    }
+  },
+  "dev": {
+    "rabbitmq": {
+      "username": "sv_noti_client_test",
+      "password": "sv_noti_client_test",
+      "vhost": "/",
+      "host": "10.21.68.81",
+      "port": 5672
+    },
+    "exchange": {
+      "name": "sv_noti",
+      "type": "headers",
+      "queue": {
+        "name": "quarkus-rabbitmq-test-tse.status-change",
+        "routing_key": "noti",
+        "ack": true,
+        "params": {
+          "notificationType": "BASE_PRODUCT_STATUS_CHANGE",
+          "notificationCategory": "SERVICE"
+        }
+      }
+    }
+  }
+}

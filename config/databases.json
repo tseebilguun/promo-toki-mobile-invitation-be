@@ -1,0 +1,121 @@
+{
+  "databases": [
+    {
+      "name": "cube",
+      "driverClass": "oracle.jdbc.OracleDriver",
+      "url": "jdbc:oracle:thin:@ (DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = 10.21.8.40)(PORT = 1521)) (ADDRESS = (PROTOCOL = TCP)(HOST = 10.21.8.41)(PORT = 1521)) (LOAD_BALANCE = yes) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = ACUBECBS) (FAILOVER_MODE = (TYPE = SELECT) (METHOD = BASIC) (RETRIES = 180) (DELAY = 5))))",
+      "user": "unitelapp",
+      "password": "unitelapp",
+      "minconn": 5,
+      "maxconn": 10
+    },
+    {
+      "name": "promo2",
+      "driverClass": "oracle.jdbc.OracleDriver",
+      "url": "jdbc:oracle:thin:@(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 10.21.64.252)(PORT = 1521)) ) (CONNECT_DATA = (SERVICE_NAME = promo2) ) )",
+      "user": "uni_conference",
+      "password": "PAX5sUr1EybX",
+      "minconn": 10,
+      "maxconn": 40
+    },
+    {
+      "name": "csbs",
+      "driverClass": "oracle.jdbc.OracleDriver",
+      "url": "jdbc:oracle:thin:@(DESCRIPTION = (ADDRESS_LIST = (address = (protocol = tcp)(host = 10.88.88.4)(port = 1521)) (address = (protocol = tcp)(host = 10.88.88.5)(port = 1521))) (CONNECT_DATA = (SERVICE_NAME = CSBS) (failover_mode = (type = select) (method = basic))))",
+      "user": "Uangel",
+      "password": "uan93l#1234",
+      "minconn": 1,
+      "maxconn": 5
+    },
+    {
+      "name": "uloan",
+      "driverClass": "oracle.jdbc.OracleDriver",
+      "url": "jdbc:oracle:thin:@192.168.8.133:1521:uloan",
+      "user": "sync",
+      "password": "h5b5phum",
+      "minconn": 1,
+      "maxconn": 5
+    },
+    {
+      "name": "content",
+      "driverClass": "oracle.jdbc.OracleDriver",
+      "url": "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.8.244)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=content)))",
+      "user": "uni_core",
+      "password": "k^D7nidzoR43EOF5%Gjx",
+      "minconn": 1,
+      "maxconn": 5
+    },
+    {
+      "name": "mdealer",
+      "driverClass": "oracle.jdbc.OracleDriver",
+      "url": "jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.8.253)(PORT = 1521)))(CONNECT_DATA =(SERVICE_NAME = MOBILEDEALER)))",
+      "user": "Mobiledealer",
+      "password": "8asepAs67Drat5",
+      "minconn": 1,
+      "maxconn": 5
+    },
+    {
+      "name": "cat_change",
+      "driverClass": "oracle.jdbc.OracleDriver",
+      "url": "jdbc:oracle:thin:@(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.8.254)(PORT = 1521)))(CONNECT_DATA =(SERVICE_NAME = mdealer)))",
+      "user": "cat_change",
+      "password": "6reThewUfu35hu",
+      "minconn": 5,
+      "maxconn": 10
+    },
+    {
+      "name": "uni_cms",
+      "driverClass": "oracle.jdbc.OracleDriver",
+      "url": "jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.8.253)(PORT = 1521)))(CONNECT_DATA =(SERVICE_NAME = MOBILEDEALER)))",
+      "user": "uni_cms",
+      "password": "PVqXb2dh1H7ytCDS-Ajk",
+      "minconn": 5,
+      "maxconn": 10
+    },
+    {
+      "name": "promotion",
+      "driverClass": "oracle.jdbc.OracleDriver",
+      "url": "jdbc:oracle:thin:@(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.8.254)(PORT = 1521)))(CONNECT_DATA =(SERVICE_NAME = mdealer)))",
+      "user": "sync",
+      "password": "h5b5phum",
+      "minconn": 1,
+      "maxconn": 5
+    },
+    {
+      "name": "uni_servicelog",
+      "driverClass": "oracle.jdbc.OracleDriver",
+      "url": "jdbc:oracle:thin:@(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 10.21.64.252)(PORT = 1521)) ) (CONNECT_DATA = (SERVICE_NAME = promo2) ) )",
+      "user": "uni_servicelog",
+      "password": "servicelog",
+      "minconn": 10,
+      "maxconn": 40
+    },
+    {
+      "name": "uni_dealer",
+      "driverClass": "oracle.jdbc.OracleDriver",
+      "url": "jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.8.253)(PORT = 1521)))(CONNECT_DATA =(SERVICE_NAME = MOBILEDEALER)))",
+      "user": "uni_dealer",
+      "password": "QtfZVdq0GFnz",
+      "minconn": 3,
+      "maxconn": 5
+    },
+    {
+      "name": "uni_promotion",
+      "driverClass": "oracle.jdbc.OracleDriver",
+      "url": "jdbc:oracle:thin:@(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 10.21.64.252)(PORT = 1521)) ) (CONNECT_DATA = (SERVICE_NAME = promo2) ) )",
+      "user": "uni_promotion",
+      "password": "promotion",
+      "minconn": 10,
+      "maxconn": 40
+    },
+    {
+      "name": "uni_service",
+      "driverClass": "oracle.jdbc.OracleDriver",
+      "url": "jdbc:oracle:thin:@(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.8.246)(PORT = 1521)))(CONNECT_DATA =(SERVICE_NAME = promotion)))",
+      "user": "uni_service",
+      "password": "JvLDm2V8",
+      "minconn": 5,
+      "maxconn": 10
+    }
+  ]
+}

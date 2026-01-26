@@ -1,0 +1,30 @@
+{
+  "dev": {
+    "rabbitmq": {
+      "username": "bataka",
+      "password": "bataka123",
+      "host": "10.21.64.30",
+      "vhost": "/",
+      "port": 5672
+    },
+    "exchange": {
+      "name": "sms.send",
+      "type": "direct",
+      "routing_key": "sms"
+    }
+  },
+  "prod": {
+    "rabbitmq": {
+      "username": "bataka",
+      "password": "bataka123",
+      "host": "10.21.64.30",
+      "vhost": "/",
+      "port": 5672
+    },
+    "exchange": {
+      "name": "sms.send",
+      "type": "direct",
+      "routing_key": "sms"
+    }
+  }
+}
