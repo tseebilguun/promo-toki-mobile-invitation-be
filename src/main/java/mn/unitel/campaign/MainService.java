@@ -24,8 +24,7 @@ import static mn.unitel.campaign.jooq.Tables.PROMOTION_ENTITLEMENTS;
 @Slf4j
 @ApplicationScoped
 public class MainService {
-    @Inject
-    Logger logger;
+    private static final Logger logger = Logger.getLogger(MainService.class);
 
     @Inject
     DSLContext dsl;

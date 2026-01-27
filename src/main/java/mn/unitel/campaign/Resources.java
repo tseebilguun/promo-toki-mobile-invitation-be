@@ -18,7 +18,7 @@ public class Resources {
     MainService mainService;
 
     @POST
-    @Path("/auth/login")
+    @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(LoginReq loginRequest) {
         return mainService.login(loginRequest);

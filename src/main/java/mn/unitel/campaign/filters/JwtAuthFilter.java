@@ -16,12 +16,10 @@ import java.util.Set;
 @Provider
 @Priority(Priorities.AUTHENTICATION)
 public class JwtAuthFilter implements ContainerRequestFilter {
-
-    @Inject
-    Logger logger;
+    private static final Logger logger = Logger.getLogger(JwtService.class);
 
     private static final Set<String> PUBLIC_PATHS = Set.of(
-            "/auth/login",
+            "/login",
             "/getGeneralInfo"
     );
 
@@ -30,8 +28,9 @@ public class JwtAuthFilter implements ContainerRequestFilter {
 
     @Override
     public void filter(ContainerRequestContext ctx) {
-        String rawPath = ctx.getUriInfo().getPath();
-        String path = rawPath == null ? "" : rawPath.trim().toLowerCase();
+        String rawPath = ctx.getUriInfo() != null ? ctx.getUriInfo().getPath() : null;
+        String path = rawPath == null ? "/" : (rawPath.startsWith("/") ? rawPath : "/" + rawPath);
+        path = path.trim().toLowerCase();
 
         if (PUBLIC_PATHS.contains(path)) {
             logger.debug("Public endpoint: " + path);

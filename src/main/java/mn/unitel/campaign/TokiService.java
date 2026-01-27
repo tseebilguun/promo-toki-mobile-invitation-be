@@ -12,8 +12,7 @@ import org.jboss.logging.Logger;
 
 @ApplicationScoped
 public class TokiService {
-    @Inject
-    Logger logger;
+    private static final Logger logger = Logger.getLogger(TokiService.class);
 
     @RestClient
     TokiUserClient tokiUserClient;
