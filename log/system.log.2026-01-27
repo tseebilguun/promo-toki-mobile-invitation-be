@@ -1,0 +1,392 @@
+2026-01-27 14:22:20,281 INFO  [io.qua.sch.run.SimpleScheduler] (Quarkus Main Thread) No scheduled business methods found - Simple scheduler will not be started
+2026-01-27 14:22:20,316 INFO  [mn.uni.cam.con.Service] (Quarkus Main Thread) Initialising core service configuration. Directory=C:\Users\Bilguun\IdeaProjects\quarkus-apps\promo-toki-mobile-invitation\config, Environment=dev
+2026-01-27 14:22:20,407 INFO  [mn.uni.cam.con.Service] (Quarkus Main Thread) Loaded 13 database configuration(s)
+2026-01-27 14:22:20,408 INFO  [mn.uni.cam.con.Service] (Quarkus Main Thread) 
+______ _____ _   _ _____ _     ______________  ___ _____ _   _ _____ 
+|  _  \  ___| | | |  ___| |   |  _  | ___ \  \/  ||  ___| \ | |_   _|
+| | | | |__ | | | | |__ | |   | | | | |_/ / .  . || |__ |  \| | | |  
+| | | |  __|| | | |  __|| |   | | | |  __/| |\/| ||  __|| . ` | | |  
+| |/ /| |___\ \_/ / |___| |___\ \_/ / |   | |  | || |___| |\  | | |  
+|___/ \____/ \___/\____/\_____/\___/\_|   \_|  |_/\____/\_| \_/ \_/  
+
+2026-01-27 14:22:20,454 INFO  [mn.uni.cam.rab.RabbitMQConfigLoader] (Quarkus Main Thread) Loading RabbitMQ configuration from producer-sms-direct.json for environment dev
+2026-01-27 14:22:20,652 INFO  [mn.uni.cam.rab.RabbitMQProducer] (Quarkus Main Thread) [o] RabbitMQ producer started for exchange sms.send, default routing key='sms'
+2026-01-27 14:22:21,051 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation 1.1.1 on JVM (powered by Quarkus 3.27.0) started in 8.725s. Listening on: http://0.0.0.0:6989
+2026-01-27 14:22:21,054 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2026-01-27 14:22:21,055 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, jdbc-postgresql, micrometer, narayana-jta, rest, rest-client, rest-client-jackson, rest-jackson, scheduler, security, smallrye-context-propagation, smallrye-health, smallrye-jwt, vertx]
+2026-01-27 15:07:18,780 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-27 15:45:34,944 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-27 15:50:29,172 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-27 15:59:03,180 WARN  [io.qua.config] (Quarkus Main Thread) The "quarkus.http.cors" config property is deprecated and should not be used anymore.
+2026-01-27 15:59:03,630 INFO  [io.qua.sch.run.SimpleScheduler] (Quarkus Main Thread) No scheduled business methods found - Simple scheduler will not be started
+2026-01-27 15:59:03,646 INFO  [mn.uni.cam.con.Service] (Quarkus Main Thread) Initialising core service configuration. Directory=C:\Users\Bilguun\IdeaProjects\quarkus-apps\promo-toki-mobile-invitation\config, Environment=dev
+2026-01-27 15:59:03,696 INFO  [mn.uni.cam.con.Service] (Quarkus Main Thread) Loaded 13 database configuration(s)
+2026-01-27 15:59:03,697 INFO  [mn.uni.cam.con.Service] (Quarkus Main Thread) 
+______ _____ _   _ _____ _     ______________  ___ _____ _   _ _____ 
+|  _  \  ___| | | |  ___| |   |  _  | ___ \  \/  ||  ___| \ | |_   _|
+| | | | |__ | | | | |__ | |   | | | | |_/ / .  . || |__ |  \| | | |  
+| | | |  __|| | | |  __|| |   | | | |  __/| |\/| ||  __|| . ` | | |  
+| |/ /| |___\ \_/ / |___| |___\ \_/ / |   | |  | || |___| |\  | | |  
+|___/ \____/ \___/\____/\_____/\___/\_|   \_|  |_/\____/\_| \_/ \_/  
+
+2026-01-27 15:59:03,721 INFO  [mn.uni.cam.rab.RabbitMQConfigLoader] (Quarkus Main Thread) Loading RabbitMQ configuration from producer-sms-direct.json for environment dev
+2026-01-27 15:59:03,835 INFO  [mn.uni.cam.rab.RabbitMQProducer] (Quarkus Main Thread) [o] RabbitMQ producer started for exchange sms.send, default routing key='sms'
+2026-01-27 15:59:04,039 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation 1.1.1 on JVM (powered by Quarkus 3.27.0) started in 13.471s. Listening on: http://0.0.0.0:6989
+2026-01-27 15:59:04,039 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2026-01-27 15:59:04,040 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, jdbc-postgresql, micrometer, narayana-jta, rest, rest-client, rest-client-jackson, rest-jackson, scheduler, security, smallrye-context-propagation, smallrye-health, smallrye-jwt, vertx]
+2026-01-27 15:59:06,643 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-2) ***************** Incoming Request *****************
+2026-01-27 15:59:06,643 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request *****************
+2026-01-27 15:59:06,645 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-2) POST http://localhost:6989/login
+2026-01-27 15:59:06,645 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) POST http://localhost:6989/login
+2026-01-27 15:59:06,659 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-2) Incoming request Body: {
+  "msisdn" : "88112233",
+  "tokiId" : "TOKI_ID_123"
+}
+2026-01-27 15:59:06,659 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Incoming request Body: {
+  "msisdn" : "88112233",
+  "tokiId" : "TOKI_ID_123"
+}
+2026-01-27 15:59:07,077 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request's Response *****************
+2026-01-27 15:59:07,077 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-2) ***************** Incoming Request's Response *****************
+2026-01-27 15:59:07,077 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-2) Status: 200
+2026-01-27 15:59:07,077 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Status: 200
+2026-01-27 15:59:07,083 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Body: {
+  "result" : "success",
+  "message" : "Login successful",
+  "data" : "eyJhbGciOiJIUzI1NiJ9.eyJ0b2tpSWQiOiJUT0tJX0lEXzEyMyIsIm1zaXNkbiI6Ijg4MTEyMjMzIiwic3ViIjoiVE9LSV9JRF8xMjMiLCJpYXQiOjE3Njk1MDA3NDcsImV4cCI6MTc2OTUwMTY0N30.E7MtXYGOXdKYS04hHtyERzoqT2CQFdkNzuUw_n4Hk_U"
+}
+2026-01-27 15:59:07,083 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-2) Body: {
+  "result" : "success",
+  "message" : "Login successful",
+  "data" : "eyJhbGciOiJIUzI1NiJ9.eyJ0b2tpSWQiOiJUT0tJX0lEXzEyMyIsIm1zaXNkbiI6Ijg4MTEyMjMzIiwic3ViIjoiVE9LSV9JRF8xMjMiLCJpYXQiOjE3Njk1MDA3NDcsImV4cCI6MTc2OTUwMTY0N30.E7MtXYGOXdKYS04hHtyERzoqT2CQFdkNzuUw_n4Hk_U"
+}
+2026-01-27 15:59:55,593 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) ***************** Incoming Request *****************
+2026-01-27 15:59:55,593 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) POST http://localhost:6989/login
+2026-01-27 15:59:55,594 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) Incoming request Body: {
+  "msisdn" : "88112233",
+  "tokiId" : "TOKI_ID_123"
+}
+2026-01-27 15:59:55,596 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) ***************** Incoming Request's Response *****************
+2026-01-27 15:59:55,598 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) Status: 200
+2026-01-27 15:59:55,599 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) Body: {
+  "result" : "success",
+  "message" : "Login successful",
+  "data" : "eyJhbGciOiJIUzI1NiJ9.eyJ0b2tpSWQiOiJUT0tJX0lEXzEyMyIsIm1zaXNkbiI6Ijg4MTEyMjMzIiwic3ViIjoiVE9LSV9JRF8xMjMiLCJpYXQiOjE3Njk1MDA3OTUsImV4cCI6MTc2OTUwMTY5NX0.vIZjvneztNmY-L-hVTKM0XrLmSc4zz13BoKIo2Y9XuE"
+}
+2026-01-27 15:59:58,501 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) ***************** Incoming Request *****************
+2026-01-27 15:59:58,503 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) POST http://localhost:6989/login
+2026-01-27 15:59:58,504 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) Incoming request Body: {
+  "msisdn" : "88112233",
+  "tokiId" : "TOKI_ID_123"
+}
+2026-01-27 15:59:58,507 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) ***************** Incoming Request's Response *****************
+2026-01-27 15:59:58,509 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) Status: 200
+2026-01-27 15:59:58,511 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) Body: {
+  "result" : "success",
+  "message" : "Login successful",
+  "data" : "eyJhbGciOiJIUzI1NiJ9.eyJ0b2tpSWQiOiJUT0tJX0lEXzEyMyIsIm1zaXNkbiI6Ijg4MTEyMjMzIiwic3ViIjoiVE9LSV9JRF8xMjMiLCJpYXQiOjE3Njk1MDA3OTgsImV4cCI6MTc2OTUwMTY5OH0.uVLqIjGU4ZGByXSeBk7V5ZcwdUvLxH_eDqZzrKjNN_w"
+}
+2026-01-27 16:00:07,278 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) ***************** Incoming Request *****************
+2026-01-27 16:00:07,279 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) POST http://localhost:6989/login
+2026-01-27 16:00:07,279 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) Incoming request Body: {
+  "msisdn" : "88112233",
+  "tokiId" : "TOKI_ID_123"
+}
+2026-01-27 16:00:07,281 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) ***************** Incoming Request's Response *****************
+2026-01-27 16:00:07,282 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) Status: 200
+2026-01-27 16:00:07,282 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) Body: {
+  "result" : "success",
+  "message" : "Login successful",
+  "data" : "eyJhbGciOiJIUzI1NiJ9.eyJ0b2tpSWQiOiJUT0tJX0lEXzEyMyIsIm1zaXNkbiI6Ijg4MTEyMjMzIiwic3ViIjoiVE9LSV9JRF8xMjMiLCJpYXQiOjE3Njk1MDA4MDcsImV4cCI6MTc2OTUwMTcwN30.z8IfB_jUEDrtLCScfcISCs46LpQf-axj3C2TRWnr_wA"
+}
+2026-01-27 16:00:33,952 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) ***************** Incoming Request *****************
+2026-01-27 16:00:33,953 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) POST http://localhost:6989/login
+2026-01-27 16:00:33,956 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) Incoming request Body: {
+  "msisdn" : "88112233",
+  "tokiId" : "TOKI_ID_123"
+}
+2026-01-27 16:00:33,966 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) ***************** Incoming Request's Response *****************
+2026-01-27 16:00:33,970 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) Status: 200
+2026-01-27 16:00:33,975 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) Body: {
+  "result" : "success",
+  "message" : "Login successful",
+  "data" : "eyJhbGciOiJIUzI1NiJ9.eyJ0b2tpSWQiOiJUT0tJX0lEXzEyMyIsIm1zaXNkbiI6Ijg4MTEyMjMzIiwic3ViIjoiVE9LSV9JRF8xMjMiLCJpYXQiOjE3Njk1MDA4MzMsImV4cCI6MTc2OTUwMTczM30.evJan1ixnFzD2XGlGHauO1iQ-pXhYnItf0_qAVe8Agw"
+}
+2026-01-27 16:00:42,617 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) ***************** Incoming Request *****************
+2026-01-27 16:00:42,618 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) POST http://localhost:6989/login
+2026-01-27 16:00:42,625 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) Incoming request Body: {
+  "msisdn" : "88112233",
+  "tokiId" : "TOKI_ID_123"
+}
+2026-01-27 16:00:42,629 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) ***************** Incoming Request's Response *****************
+2026-01-27 16:00:42,630 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) Status: 200
+2026-01-27 16:00:42,631 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-3) Body: {
+  "result" : "success",
+  "message" : "Login successful",
+  "data" : "eyJhbGciOiJIUzI1NiJ9.eyJ0b2tpSWQiOiJUT0tJX0lEXzEyMyIsIm1zaXNkbiI6Ijg4MTEyMjMzIiwic3ViIjoiVE9LSV9JRF8xMjMiLCJpYXQiOjE3Njk1MDA4NDIsImV4cCI6MTc2OTUwMTc0Mn0.udnW8E4-Vz6m-sKPSa0rQ_010Pheq2TE7EFBG-pxyHE"
+}
+2026-01-27 16:02:32,458 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-1) Restarting quarkus due to changes in JwtAuthFilter.class.
+2026-01-27 16:02:32,466 INFO  [mn.uni.cam.leg.StartupService] (Quarkus Main Thread) All consumers stopped
+2026-01-27 16:02:32,495 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation stopped in 0.034s
+2026-01-27 16:02:33,433 WARN  [io.qua.config] (Quarkus Main Thread) The "quarkus.http.cors" config property is deprecated and should not be used anymore.
+2026-01-27 16:02:33,468 INFO  [io.qua.sch.run.SimpleScheduler] (Quarkus Main Thread) No scheduled business methods found - Simple scheduler will not be started
+2026-01-27 16:02:33,475 INFO  [mn.uni.cam.rab.RabbitMQConfigLoader] (Quarkus Main Thread) Loading RabbitMQ configuration from producer-sms-direct.json for environment dev
+2026-01-27 16:02:33,525 INFO  [mn.uni.cam.rab.RabbitMQProducer] (Quarkus Main Thread) [o] RabbitMQ producer started for exchange sms.send, default routing key='sms'
+2026-01-27 16:02:33,528 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation 1.1.1 on JVM (powered by Quarkus 3.27.0) started in 1.031s. Listening on: http://0.0.0.0:6989
+2026-01-27 16:02:33,529 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2026-01-27 16:02:33,529 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, jdbc-postgresql, micrometer, narayana-jta, rest, rest-client, rest-client-jackson, rest-jackson, scheduler, security, smallrye-context-propagation, smallrye-health, smallrye-jwt, vertx]
+2026-01-27 16:02:33,530 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-1) Live reload total time: 3.066s 
+2026-01-27 16:02:33,557 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request *****************
+2026-01-27 16:02:33,558 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) POST http://localhost:6989/login
+2026-01-27 16:02:33,559 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Incoming request Body: {
+  "msisdn" : "88112233",
+  "tokiId" : "TOKI_ID_123"
+}
+2026-01-27 16:02:33,566 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request's Response *****************
+2026-01-27 16:02:33,567 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Status: 200
+2026-01-27 16:02:33,568 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Body: {
+  "result" : "success",
+  "message" : "Login successful",
+  "data" : "eyJhbGciOiJIUzI1NiJ9.eyJ0b2tpSWQiOiJUT0tJX0lEXzEyMyIsIm1zaXNkbiI6Ijg4MTEyMjMzIiwic3ViIjoiVE9LSV9JRF8xMjMiLCJpYXQiOjE3Njk1MDA5NTMsImV4cCI6MTc2OTUwMTg1M30.QBqBdwjSO3MCGXcaKplVT4ci63SDnHmcMtsE3Pcub_k"
+}
+2026-01-27 16:03:38,443 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-4) Restarting quarkus due to changes in JwtAuthFilter.class.
+2026-01-27 16:03:38,444 INFO  [mn.uni.cam.leg.StartupService] (Quarkus Main Thread) All consumers stopped
+2026-01-27 16:03:38,460 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation stopped in 0.016s
+2026-01-27 16:03:39,179 WARN  [io.qua.config] (Quarkus Main Thread) The "quarkus.http.cors" config property is deprecated and should not be used anymore.
+2026-01-27 16:03:39,223 INFO  [io.qua.sch.run.SimpleScheduler] (Quarkus Main Thread) No scheduled business methods found - Simple scheduler will not be started
+2026-01-27 16:03:39,235 INFO  [mn.uni.cam.rab.RabbitMQConfigLoader] (Quarkus Main Thread) Loading RabbitMQ configuration from producer-sms-direct.json for environment dev
+2026-01-27 16:03:39,288 INFO  [mn.uni.cam.rab.RabbitMQProducer] (Quarkus Main Thread) [o] RabbitMQ producer started for exchange sms.send, default routing key='sms'
+2026-01-27 16:03:39,292 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation 1.1.1 on JVM (powered by Quarkus 3.27.0) started in 0.832s. Listening on: http://0.0.0.0:6989
+2026-01-27 16:03:39,294 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2026-01-27 16:03:39,295 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, jdbc-postgresql, micrometer, narayana-jta, rest, rest-client, rest-client-jackson, rest-jackson, scheduler, security, smallrye-context-propagation, smallrye-health, smallrye-jwt, vertx]
+2026-01-27 16:03:39,296 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-4) Live reload total time: 1.456s 
+2026-01-27 16:03:39,311 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request *****************
+2026-01-27 16:03:39,312 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) POST http://localhost:6989/login
+2026-01-27 16:03:39,316 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Incoming request Body: {
+  "msisdn" : "88112233",
+  "tokiId" : "TOKI_ID_123"
+}
+2026-01-27 16:03:39,340 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request's Response *****************
+2026-01-27 16:03:39,348 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Status: 200
+2026-01-27 16:03:39,353 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Body: {
+  "result" : "success",
+  "message" : "Login successful",
+  "data" : "eyJhbGciOiJIUzI1NiJ9.eyJ0b2tpSWQiOiJUT0tJX0lEXzEyMyIsIm1zaXNkbiI6Ijg4MTEyMjMzIiwic3ViIjoiVE9LSV9JRF8xMjMiLCJpYXQiOjE3Njk1MDEwMTksImV4cCI6MTc2OTUwMTkxOX0.QCQOY3Dg-H2uAyR6tV0lLAxrTxB_OjAgw4ICGgHW7UE"
+}
+2026-01-27 16:03:43,866 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request *****************
+2026-01-27 16:03:43,866 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) POST http://localhost:6989/login
+2026-01-27 16:03:43,867 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Incoming request Body: {
+  "msisdn" : "88112233",
+  "tokiId" : "TOKI_ID_123"
+}
+2026-01-27 16:03:43,868 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request's Response *****************
+2026-01-27 16:03:43,869 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Status: 200
+2026-01-27 16:03:43,869 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Body: {
+  "result" : "success",
+  "message" : "Login successful",
+  "data" : "eyJhbGciOiJIUzI1NiJ9.eyJ0b2tpSWQiOiJUT0tJX0lEXzEyMyIsIm1zaXNkbiI6Ijg4MTEyMjMzIiwic3ViIjoiVE9LSV9JRF8xMjMiLCJpYXQiOjE3Njk1MDEwMjMsImV4cCI6MTc2OTUwMTkyM30.aQ7dqHSyN_WkWZCaLcVtbkf7YlYPXpbecXKlR6-3-EA"
+}
+2026-01-27 16:04:13,608 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-6) Restarting quarkus due to changes in JwtAuthFilter.class, MainService.class.
+2026-01-27 16:04:13,609 INFO  [mn.uni.cam.leg.StartupService] (Quarkus Main Thread) All consumers stopped
+2026-01-27 16:04:13,643 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation stopped in 0.034s
+2026-01-27 16:04:14,394 WARN  [io.qua.config] (Quarkus Main Thread) The "quarkus.http.cors" config property is deprecated and should not be used anymore.
+2026-01-27 16:04:14,416 INFO  [io.qua.sch.run.SimpleScheduler] (Quarkus Main Thread) No scheduled business methods found - Simple scheduler will not be started
+2026-01-27 16:04:14,422 INFO  [mn.uni.cam.rab.RabbitMQConfigLoader] (Quarkus Main Thread) Loading RabbitMQ configuration from producer-sms-direct.json for environment dev
+2026-01-27 16:04:14,470 INFO  [mn.uni.cam.rab.RabbitMQProducer] (Quarkus Main Thread) [o] RabbitMQ producer started for exchange sms.send, default routing key='sms'
+2026-01-27 16:04:14,475 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation 1.1.1 on JVM (powered by Quarkus 3.27.0) started in 0.830s. Listening on: http://0.0.0.0:6989
+2026-01-27 16:04:14,476 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2026-01-27 16:04:14,476 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, jdbc-postgresql, micrometer, narayana-jta, rest, rest-client, rest-client-jackson, rest-jackson, scheduler, security, smallrye-context-propagation, smallrye-health, smallrye-jwt, vertx]
+2026-01-27 16:04:14,476 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-6) Live reload total time: 2.116s 
+2026-01-27 16:04:14,499 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request *****************
+2026-01-27 16:04:14,500 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) POST http://localhost:6989/login
+2026-01-27 16:04:14,502 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Incoming request Body: {
+  "msisdn" : "88112233",
+  "tokiId" : "TOKI_ID_123"
+}
+2026-01-27 16:04:14,512 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request's Response *****************
+2026-01-27 16:04:14,514 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Status: 200
+2026-01-27 16:04:14,517 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Body: {
+  "result" : "success",
+  "message" : "Login successful",
+  "data" : "eyJhbGciOiJIUzI1NiJ9.eyJ0b2tpSWQiOiJUT0tJX0lEXzEyMyIsIm1zaXNkbiI6Ijg4MTEyMjMzIiwic3ViIjoiVE9LSV9JRF8xMjMiLCJpYXQiOjE3Njk1MDEwNTQsImV4cCI6MTc2OTUwMTk1NH0.r5jTVo8_oUDuMtbqAtCT86UG1w8dXGxE_lE_rWPI2ZE"
+}
+2026-01-27 16:05:55,898 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-8) Restarting quarkus due to changes in JwtAuthFilter.class, MainService.class.
+2026-01-27 16:05:55,899 INFO  [mn.uni.cam.leg.StartupService] (Quarkus Main Thread) All consumers stopped
+2026-01-27 16:05:55,914 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation stopped in 0.016s
+2026-01-27 16:05:56,487 WARN  [io.qua.config] (Quarkus Main Thread) The "quarkus.http.cors" config property is deprecated and should not be used anymore.
+2026-01-27 16:05:56,513 INFO  [io.qua.sch.run.SimpleScheduler] (Quarkus Main Thread) No scheduled business methods found - Simple scheduler will not be started
+2026-01-27 16:05:56,521 INFO  [mn.uni.cam.rab.RabbitMQConfigLoader] (Quarkus Main Thread) Loading RabbitMQ configuration from producer-sms-direct.json for environment dev
+2026-01-27 16:05:56,573 INFO  [mn.uni.cam.rab.RabbitMQProducer] (Quarkus Main Thread) [o] RabbitMQ producer started for exchange sms.send, default routing key='sms'
+2026-01-27 16:05:56,579 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation 1.1.1 on JVM (powered by Quarkus 3.27.0) started in 0.663s. Listening on: http://0.0.0.0:6989
+2026-01-27 16:05:56,580 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2026-01-27 16:05:56,580 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, jdbc-postgresql, micrometer, narayana-jta, rest, rest-client, rest-client-jackson, rest-jackson, scheduler, security, smallrye-context-propagation, smallrye-health, smallrye-jwt, vertx]
+2026-01-27 16:05:56,581 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-8) Live reload total time: 1.572s 
+2026-01-27 16:05:56,592 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request *****************
+2026-01-27 16:05:56,592 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) POST http://localhost:6989/login
+2026-01-27 16:05:56,595 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Incoming request Body: {
+  "msisdn" : "88112233",
+  "tokiId" : "TOKI_ID_123"
+}
+2026-01-27 16:05:56,600 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request's Response *****************
+2026-01-27 16:05:56,601 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Status: 200
+2026-01-27 16:05:56,601 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Body: {
+  "result" : "success",
+  "message" : "Login successful",
+  "data" : "eyJhbGciOiJIUzI1NiJ9.eyJ0b2tpSWQiOiJUT0tJX0lEXzEyMyIsIm1zaXNkbiI6Ijg4MTEyMjMzIiwic3ViIjoiVE9LSV9JRF8xMjMiLCJpYXQiOjE3Njk1MDExNTYsImV4cCI6MTc2OTUwMjA1Nn0.bqobBqjnedjXnzfuP17Qx3vdlIGlXtWvzAw0WDp9ehI"
+}
+2026-01-27 16:06:31,597 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-10) Restarting quarkus due to changes in JwtAuthFilter.class.
+2026-01-27 16:06:31,599 INFO  [mn.uni.cam.leg.StartupService] (Quarkus Main Thread) All consumers stopped
+2026-01-27 16:06:31,624 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation stopped in 0.026s
+2026-01-27 16:06:32,570 WARN  [io.qua.config] (Quarkus Main Thread) The "quarkus.http.cors" config property is deprecated and should not be used anymore.
+2026-01-27 16:06:32,586 INFO  [io.qua.sch.run.SimpleScheduler] (Quarkus Main Thread) No scheduled business methods found - Simple scheduler will not be started
+2026-01-27 16:06:32,591 INFO  [mn.uni.cam.rab.RabbitMQConfigLoader] (Quarkus Main Thread) Loading RabbitMQ configuration from producer-sms-direct.json for environment dev
+2026-01-27 16:06:32,634 INFO  [mn.uni.cam.rab.RabbitMQProducer] (Quarkus Main Thread) [o] RabbitMQ producer started for exchange sms.send, default routing key='sms'
+2026-01-27 16:06:32,636 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation 1.1.1 on JVM (powered by Quarkus 3.27.0) started in 1.011s. Listening on: http://0.0.0.0:6989
+2026-01-27 16:06:32,636 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2026-01-27 16:06:32,637 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, jdbc-postgresql, micrometer, narayana-jta, rest, rest-client, rest-client-jackson, rest-jackson, scheduler, security, smallrye-context-propagation, smallrye-health, smallrye-jwt, vertx]
+2026-01-27 16:06:32,637 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-10) Live reload total time: 1.980s 
+2026-01-27 16:06:32,643 INFO  [mn.uni.cam.fil.JwtAuthFilter] (executor-thread-1) sdasda
+2026-01-27 16:06:32,644 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request *****************
+2026-01-27 16:06:32,644 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) POST http://localhost:6989/login
+2026-01-27 16:06:32,645 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Incoming request Body: {
+  "msisdn" : "88112233",
+  "tokiId" : "TOKI_ID_123"
+}
+2026-01-27 16:06:32,651 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request's Response *****************
+2026-01-27 16:06:32,651 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Status: 200
+2026-01-27 16:06:32,652 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Body: {
+  "result" : "success",
+  "message" : "Login successful",
+  "data" : "eyJhbGciOiJIUzI1NiJ9.eyJ0b2tpSWQiOiJUT0tJX0lEXzEyMyIsIm1zaXNkbiI6Ijg4MTEyMjMzIiwic3ViIjoiVE9LSV9JRF8xMjMiLCJpYXQiOjE3Njk1MDExOTIsImV4cCI6MTc2OTUwMjA5Mn0.iMIVq73RnEsHEMr7fLg3DEf1oahJeNz7BYrqEXnyHuc"
+}
+2026-01-27 16:07:20,860 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-12) Restarting quarkus due to changes in JwtAuthFilter.class.
+2026-01-27 16:07:20,862 INFO  [mn.uni.cam.leg.StartupService] (Quarkus Main Thread) All consumers stopped
+2026-01-27 16:07:20,892 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation stopped in 0.031s
+2026-01-27 16:07:22,295 WARN  [io.qua.config] (Quarkus Main Thread) The "quarkus.http.cors" config property is deprecated and should not be used anymore.
+2026-01-27 16:07:22,353 INFO  [io.qua.sch.run.SimpleScheduler] (Quarkus Main Thread) No scheduled business methods found - Simple scheduler will not be started
+2026-01-27 16:07:22,369 INFO  [mn.uni.cam.rab.RabbitMQConfigLoader] (Quarkus Main Thread) Loading RabbitMQ configuration from producer-sms-direct.json for environment dev
+2026-01-27 16:07:22,445 INFO  [mn.uni.cam.rab.RabbitMQProducer] (Quarkus Main Thread) [o] RabbitMQ producer started for exchange sms.send, default routing key='sms'
+2026-01-27 16:07:22,451 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation 1.1.1 on JVM (powered by Quarkus 3.27.0) started in 1.556s. Listening on: http://0.0.0.0:6989
+2026-01-27 16:07:22,452 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2026-01-27 16:07:22,452 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, jdbc-postgresql, micrometer, narayana-jta, rest, rest-client, rest-client-jackson, rest-jackson, scheduler, security, smallrye-context-propagation, smallrye-health, smallrye-jwt, vertx]
+2026-01-27 16:07:22,453 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-12) Live reload total time: 2.725s 
+2026-01-27 16:07:22,485 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request *****************
+2026-01-27 16:07:22,486 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) POST http://localhost:6989/login
+2026-01-27 16:07:22,489 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Incoming request Body: {
+  "msisdn" : "88112233",
+  "tokiId" : "TOKI_ID_123"
+}
+2026-01-27 16:07:22,501 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request's Response *****************
+2026-01-27 16:07:22,501 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Status: 200
+2026-01-27 16:07:22,506 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Body: {
+  "result" : "success",
+  "message" : "Login successful",
+  "data" : "eyJhbGciOiJIUzI1NiJ9.eyJ0b2tpSWQiOiJUT0tJX0lEXzEyMyIsIm1zaXNkbiI6Ijg4MTEyMjMzIiwic3ViIjoiVE9LSV9JRF8xMjMiLCJpYXQiOjE3Njk1MDEyNDIsImV4cCI6MTc2OTUwMjE0Mn0.yWdPZy5qUGcuvv6rElzrSEGww2CQkqQJ2k8PVVr626s"
+}
+2026-01-27 16:11:50,328 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-14) Restarting quarkus due to changes in JwtAuthFilter.class.
+2026-01-27 16:11:50,328 INFO  [mn.uni.cam.leg.StartupService] (Quarkus Main Thread) All consumers stopped
+2026-01-27 16:11:50,341 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation stopped in 0.014s
+2026-01-27 16:11:50,843 WARN  [io.qua.config] (Quarkus Main Thread) The "quarkus.http.cors" config property is deprecated and should not be used anymore.
+2026-01-27 16:11:50,877 INFO  [io.qua.sch.run.SimpleScheduler] (Quarkus Main Thread) No scheduled business methods found - Simple scheduler will not be started
+2026-01-27 16:11:50,879 INFO  [mn.uni.cam.rab.RabbitMQConfigLoader] (Quarkus Main Thread) Loading RabbitMQ configuration from producer-sms-direct.json for environment dev
+2026-01-27 16:11:50,921 INFO  [mn.uni.cam.rab.RabbitMQProducer] (Quarkus Main Thread) [o] RabbitMQ producer started for exchange sms.send, default routing key='sms'
+2026-01-27 16:11:50,924 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation 1.1.1 on JVM (powered by Quarkus 3.27.0) started in 0.582s. Listening on: http://0.0.0.0:6989
+2026-01-27 16:11:50,925 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2026-01-27 16:11:50,925 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, jdbc-postgresql, micrometer, narayana-jta, rest, rest-client, rest-client-jackson, rest-jackson, scheduler, security, smallrye-context-propagation, smallrye-health, smallrye-jwt, vertx]
+2026-01-27 16:11:50,925 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-14) Live reload total time: 0.954s 
+2026-01-27 16:14:58,335 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-16) Restarting quarkus due to changes in JwtAuthFilter.class.
+2026-01-27 16:14:58,336 INFO  [mn.uni.cam.leg.StartupService] (Quarkus Main Thread) All consumers stopped
+2026-01-27 16:14:58,352 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation stopped in 0.017s
+2026-01-27 16:14:58,952 WARN  [io.qua.config] (Quarkus Main Thread) The "quarkus.http.cors" config property is deprecated and should not be used anymore.
+2026-01-27 16:14:58,967 INFO  [io.qua.sch.run.SimpleScheduler] (Quarkus Main Thread) No scheduled business methods found - Simple scheduler will not be started
+2026-01-27 16:14:58,970 INFO  [mn.uni.cam.rab.RabbitMQConfigLoader] (Quarkus Main Thread) Loading RabbitMQ configuration from producer-sms-direct.json for environment dev
+2026-01-27 16:14:59,007 INFO  [mn.uni.cam.rab.RabbitMQProducer] (Quarkus Main Thread) [o] RabbitMQ producer started for exchange sms.send, default routing key='sms'
+2026-01-27 16:14:59,010 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation 1.1.1 on JVM (powered by Quarkus 3.27.0) started in 0.656s. Listening on: http://0.0.0.0:6989
+2026-01-27 16:14:59,010 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2026-01-27 16:14:59,010 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, jdbc-postgresql, micrometer, narayana-jta, rest, rest-client, rest-client-jackson, rest-jackson, scheduler, security, smallrye-context-propagation, smallrye-health, smallrye-jwt, vertx]
+2026-01-27 16:14:59,010 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-16) Live reload total time: 1.095s 
+2026-01-27 16:15:38,140 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-18) Restarting quarkus due to changes in MainService.class.
+2026-01-27 16:15:38,141 INFO  [mn.uni.cam.leg.StartupService] (Quarkus Main Thread) All consumers stopped
+2026-01-27 16:15:38,158 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation stopped in 0.017s
+2026-01-27 16:15:38,896 WARN  [io.qua.config] (Quarkus Main Thread) The "quarkus.http.cors" config property is deprecated and should not be used anymore.
+2026-01-27 16:15:38,911 INFO  [io.qua.sch.run.SimpleScheduler] (Quarkus Main Thread) No scheduled business methods found - Simple scheduler will not be started
+2026-01-27 16:15:38,915 INFO  [mn.uni.cam.rab.RabbitMQConfigLoader] (Quarkus Main Thread) Loading RabbitMQ configuration from producer-sms-direct.json for environment dev
+2026-01-27 16:15:38,961 INFO  [mn.uni.cam.rab.RabbitMQProducer] (Quarkus Main Thread) [o] RabbitMQ producer started for exchange sms.send, default routing key='sms'
+2026-01-27 16:15:38,965 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation 1.1.1 on JVM (powered by Quarkus 3.27.0) started in 0.807s. Listening on: http://0.0.0.0:6989
+2026-01-27 16:15:38,967 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2026-01-27 16:15:38,967 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, jdbc-postgresql, micrometer, narayana-jta, rest, rest-client, rest-client-jackson, rest-jackson, scheduler, security, smallrye-context-propagation, smallrye-health, smallrye-jwt, vertx]
+2026-01-27 16:15:38,967 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-18) Live reload total time: 1.881s 
+2026-01-27 16:15:46,227 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-20) Restarting quarkus due to changes in MainService.class.
+2026-01-27 16:15:46,229 INFO  [mn.uni.cam.leg.StartupService] (Quarkus Main Thread) All consumers stopped
+2026-01-27 16:15:46,244 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation stopped in 0.017s
+2026-01-27 16:15:46,998 WARN  [io.qua.config] (Quarkus Main Thread) The "quarkus.http.cors" config property is deprecated and should not be used anymore.
+2026-01-27 16:15:47,023 INFO  [io.qua.sch.run.SimpleScheduler] (Quarkus Main Thread) No scheduled business methods found - Simple scheduler will not be started
+2026-01-27 16:15:47,028 INFO  [mn.uni.cam.rab.RabbitMQConfigLoader] (Quarkus Main Thread) Loading RabbitMQ configuration from producer-sms-direct.json for environment dev
+2026-01-27 16:15:47,059 INFO  [mn.uni.cam.rab.RabbitMQProducer] (Quarkus Main Thread) [o] RabbitMQ producer started for exchange sms.send, default routing key='sms'
+2026-01-27 16:15:47,061 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation 1.1.1 on JVM (powered by Quarkus 3.27.0) started in 0.816s. Listening on: http://0.0.0.0:6989
+2026-01-27 16:15:47,062 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2026-01-27 16:15:47,062 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, jdbc-postgresql, micrometer, narayana-jta, rest, rest-client, rest-client-jackson, rest-jackson, scheduler, security, smallrye-context-propagation, smallrye-health, smallrye-jwt, vertx]
+2026-01-27 16:15:47,062 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-20) Live reload total time: 1.817s 
+2026-01-27 16:16:33,488 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-22) Restarting quarkus due to changes in Resources.class, MainService.class.
+2026-01-27 16:16:33,489 INFO  [mn.uni.cam.leg.StartupService] (Quarkus Main Thread) All consumers stopped
+2026-01-27 16:16:33,500 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation stopped in 0.012s
+2026-01-27 16:16:34,026 WARN  [io.qua.config] (Quarkus Main Thread) The "quarkus.http.cors" config property is deprecated and should not be used anymore.
+2026-01-27 16:16:34,037 INFO  [io.qua.sch.run.SimpleScheduler] (Quarkus Main Thread) No scheduled business methods found - Simple scheduler will not be started
+2026-01-27 16:16:34,042 INFO  [mn.uni.cam.rab.RabbitMQConfigLoader] (Quarkus Main Thread) Loading RabbitMQ configuration from producer-sms-direct.json for environment dev
+2026-01-27 16:16:34,084 INFO  [mn.uni.cam.rab.RabbitMQProducer] (Quarkus Main Thread) [o] RabbitMQ producer started for exchange sms.send, default routing key='sms'
+2026-01-27 16:16:34,088 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation 1.1.1 on JVM (powered by Quarkus 3.27.0) started in 0.587s. Listening on: http://0.0.0.0:6989
+2026-01-27 16:16:34,088 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2026-01-27 16:16:34,088 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, jdbc-postgresql, micrometer, narayana-jta, rest, rest-client, rest-client-jackson, rest-jackson, scheduler, security, smallrye-context-propagation, smallrye-health, smallrye-jwt, vertx]
+2026-01-27 16:16:34,089 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-22) Live reload total time: 1.197s 
+2026-01-27 16:16:43,277 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-24) Restarting quarkus due to changes in Resources.class.
+2026-01-27 16:16:43,279 INFO  [mn.uni.cam.leg.StartupService] (Quarkus Main Thread) All consumers stopped
+2026-01-27 16:16:43,307 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation stopped in 0.029s
+2026-01-27 16:16:43,994 WARN  [io.qua.config] (Quarkus Main Thread) The "quarkus.http.cors" config property is deprecated and should not be used anymore.
+2026-01-27 16:16:44,028 INFO  [io.qua.sch.run.SimpleScheduler] (Quarkus Main Thread) No scheduled business methods found - Simple scheduler will not be started
+2026-01-27 16:16:44,035 INFO  [mn.uni.cam.rab.RabbitMQConfigLoader] (Quarkus Main Thread) Loading RabbitMQ configuration from producer-sms-direct.json for environment dev
+2026-01-27 16:16:44,121 INFO  [mn.uni.cam.rab.RabbitMQProducer] (Quarkus Main Thread) [o] RabbitMQ producer started for exchange sms.send, default routing key='sms'
+2026-01-27 16:16:44,128 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation 1.1.1 on JVM (powered by Quarkus 3.27.0) started in 0.819s. Listening on: http://0.0.0.0:6989
+2026-01-27 16:16:44,128 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2026-01-27 16:16:44,128 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, jdbc-postgresql, micrometer, narayana-jta, rest, rest-client, rest-client-jackson, rest-jackson, scheduler, security, smallrye-context-propagation, smallrye-health, smallrye-jwt, vertx]
+2026-01-27 16:16:44,129 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-24) Live reload total time: 1.562s 
+2026-01-27 16:28:17,256 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-27 16:28:17,256 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-27 16:28:17,264 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-27 16:28:17,264 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-27 16:28:17,264 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-27 16:28:17,264 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-27 16:28:17,264 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-27 16:28:17,264 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-27 16:28:17,264 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-27 16:28:17,269 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-27 16:28:17,269 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-27 16:28:17,269 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-27 16:28:17,269 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-27 16:28:21,702 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-26) Restarting quarkus due to changes in Resources.class.
+2026-01-27 16:28:21,703 INFO  [mn.uni.cam.leg.StartupService] (Quarkus Main Thread) All consumers stopped
+2026-01-27 16:28:21,718 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation stopped in 0.015s
+2026-01-27 16:28:22,241 WARN  [io.qua.config] (Quarkus Main Thread) The "quarkus.http.cors" config property is deprecated and should not be used anymore.
+2026-01-27 16:28:22,256 INFO  [io.qua.sch.run.SimpleScheduler] (Quarkus Main Thread) No scheduled business methods found - Simple scheduler will not be started
+2026-01-27 16:28:22,260 INFO  [mn.uni.cam.rab.RabbitMQConfigLoader] (Quarkus Main Thread) Loading RabbitMQ configuration from producer-sms-direct.json for environment dev
+2026-01-27 16:28:22,291 INFO  [mn.uni.cam.rab.RabbitMQProducer] (Quarkus Main Thread) [o] RabbitMQ producer started for exchange sms.send, default routing key='sms'
+2026-01-27 16:28:22,294 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation 1.1.1 on JVM (powered by Quarkus 3.27.0) started in 0.573s. Listening on: http://0.0.0.0:6989
+2026-01-27 16:28:22,294 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2026-01-27 16:28:22,294 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, jdbc-postgresql, micrometer, narayana-jta, rest, rest-client, rest-client-jackson, rest-jackson, scheduler, security, smallrye-context-propagation, smallrye-health, smallrye-jwt, vertx]
+2026-01-27 16:28:22,294 INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (vert.x-worker-thread-26) Live reload total time: 1.104s 
+2026-01-27 16:28:22,299 INFO  [mn.uni.cam.fil.JwtAuthFilter] (executor-thread-1) ========== JWT Filter Debug ==========
+2026-01-27 16:28:22,300 INFO  [mn.uni.cam.fil.JwtAuthFilter] (executor-thread-1) Raw path: /login
+2026-01-27 16:28:22,300 INFO  [mn.uni.cam.fil.JwtAuthFilter] (executor-thread-1) Canonical path: /login
+2026-01-27 16:28:22,300 INFO  [mn.uni.cam.fil.JwtAuthFilter] (executor-thread-1) Public endpoint: /login - ALLOWED
+2026-01-27 16:28:22,300 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request *****************
+2026-01-27 16:28:22,300 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) POST http://localhost:6989/login
+2026-01-27 16:28:22,302 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Incoming request Body: {
+  "msisdn" : "88112233",
+  "tokiId" : "TOKI_ID_123"
+}
+2026-01-27 16:28:22,308 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request's Response *****************
+2026-01-27 16:28:22,308 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Status: 200
+2026-01-27 16:28:22,310 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Body: {
+  "result" : "success",
+  "message" : "Login successful",
+  "data" : "eyJhbGciOiJIUzI1NiJ9.eyJ0b2tpSWQiOiJUT0tJX0lEXzEyMyIsIm1zaXNkbiI6Ijg4MTEyMjMzIiwic3ViIjoiVE9LSV9JRF8xMjMiLCJpYXQiOjE3Njk1MDI1MDIsImV4cCI6MTc2OTUwMzQwMn0.tMMtoUW-r6C_LsWK0N4kzP0oF0n1KHWbOtBM_tt10Tc"
+}

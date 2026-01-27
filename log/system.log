@@ -1,60 +1,76 @@
-2026-01-26 15:35:02,994 INFO  [io.qua.sch.run.SimpleScheduler] (Quarkus Main Thread) No scheduled business methods found - Simple scheduler will not be started
-2026-01-26 15:35:03,003 INFO  [mn.uni.cam.con.Service] (Quarkus Main Thread) Initialising core service configuration. Directory=C:\Users\Bilguun\IdeaProjects\quarkus-apps\promo-toki-mobile-invitation\config, Environment=dev
-2026-01-26 15:35:03,028 INFO  [mn.uni.cam.con.Service] (Quarkus Main Thread) Loaded 13 database configuration(s)
-2026-01-26 15:35:03,029 INFO  [mn.uni.cam.con.Service] (Quarkus Main Thread) 
-______ _____ _   _ _____ _     ______________  ___ _____ _   _ _____ 
-|  _  \  ___| | | |  ___| |   |  _  | ___ \  \/  ||  ___| \ | |_   _|
-| | | | |__ | | | | |__ | |   | | | | |_/ / .  . || |__ |  \| | | |  
-| | | |  __|| | | |  __|| |   | | | |  __/| |\/| ||  __|| . ` | | |  
-| |/ /| |___\ \_/ / |___| |___\ \_/ / |   | |  | || |___| |\  | | |  
-|___/ \____/ \___/\____/\_____/\___/\_|   \_|  |_/\____/\_| \_/ \_/  
-
-2026-01-26 15:35:03,031 INFO  [mn.uni.cam.Utils] (Quarkus Main Thread) 
-2026-01-26 15:35:03,049 ERROR [io.qua.run.Application] (Quarkus Main Thread) Failed to start application: java.lang.RuntimeException: Failed to start quarkus
-	at io.quarkus.runner.ApplicationImpl.doStart(Unknown Source)
-	at io.quarkus.runtime.Application.start(Application.java:101)
-	at io.quarkus.runtime.ApplicationLifecycleManager.run(ApplicationLifecycleManager.java:119)
-	at io.quarkus.runtime.Quarkus.run(Quarkus.java:80)
-	at io.quarkus.runtime.Quarkus.run(Quarkus.java:51)
-	at io.quarkus.runtime.Quarkus.run(Quarkus.java:144)
-	at io.quarkus.runner.GeneratedMain.main(Unknown Source)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at io.quarkus.runner.bootstrap.StartupActionImpl$1.run(StartupActionImpl.java:136)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-Caused by: org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]
-	at org.json.JSONTokener.syntaxError(JSONTokener.java:568)
-	at org.json.JSONObject.<init>(JSONObject.java:220)
-	at org.json.JSONObject.<init>(JSONObject.java:469)
-	at org.json.JSONObject.<init>(JSONObject.java:451)
-	at mn.unitel.campaign.Utils.fileToJson(Utils.java:251)
-	at mn.unitel.campaign.legacy.StartupService.onStart(StartupService.java:55)
-	at mn.unitel.campaign.legacy.StartupService_Observer_onStart_dfvtXYcOoykgb4orCM0zUAKAPV8.notify(Unknown Source)
-	at io.quarkus.arc.impl.EventImpl$Notifier.notifyObservers(EventImpl.java:365)
-	at io.quarkus.arc.impl.EventImpl$Notifier.notify(EventImpl.java:347)
-	at io.quarkus.arc.impl.EventImpl.fire(EventImpl.java:81)
-	at io.quarkus.arc.runtime.ArcRecorder.fireLifecycleEvent(ArcRecorder.java:163)
-	at io.quarkus.arc.runtime.ArcRecorder.handleLifecycleEvents(ArcRecorder.java:114)
-	at io.quarkus.runner.recorded.LifecycleEventsBuildStep$startupEvent1144526294.deploy_0(Unknown Source)
-	at io.quarkus.runner.recorded.LifecycleEventsBuildStep$startupEvent1144526294.deploy(Unknown Source)
-	... 13 more
-
-2026-01-26 15:35:03,071 INFO  [io.qua.dep.dev.IsolatedDevModeMain] (main) Attempting to start live reload endpoint to recover from previous Quarkus startup failure
-2026-01-26 15:37:32,139 INFO  [io.qua.sch.run.SimpleScheduler] (Quarkus Main Thread) No scheduled business methods found - Simple scheduler will not be started
-2026-01-26 15:37:32,148 INFO  [mn.uni.cam.con.Service] (Quarkus Main Thread) Initialising core service configuration. Directory=C:\Users\Bilguun\IdeaProjects\quarkus-apps\promo-toki-mobile-invitation\config, Environment=dev
-2026-01-26 15:37:32,175 INFO  [mn.uni.cam.con.Service] (Quarkus Main Thread) Loaded 13 database configuration(s)
-2026-01-26 15:37:32,175 INFO  [mn.uni.cam.con.Service] (Quarkus Main Thread) 
-______ _____ _   _ _____ _     ______________  ___ _____ _   _ _____ 
-|  _  \  ___| | | |  ___| |   |  _  | ___ \  \/  ||  ___| \ | |_   _|
-| | | | |__ | | | | |__ | |   | | | | |_/ / .  . || |__ |  \| | | |  
-| | | |  __|| | | |  __|| |   | | | |  __/| |\/| ||  __|| . ` | | |  
-| |/ /| |___\ \_/ / |___| |___\ \_/ / |   | |  | || |___| |\  | | |  
-|___/ \____/ \___/\____/\_____/\___/\_|   \_|  |_/\____/\_| \_/ \_/  
-
-2026-01-26 15:37:32,192 INFO  [mn.uni.cam.rab.RabbitMQConfigLoader] (Quarkus Main Thread) Loading RabbitMQ configuration from producer-sms-direct.json for environment dev
-2026-01-26 15:37:32,314 INFO  [mn.uni.cam.rab.RabbitMQProducer] (Quarkus Main Thread) [o] RabbitMQ producer started for exchange sms.send, default routing key='sms'
-2026-01-26 15:37:32,473 INFO  [io.quarkus] (Quarkus Main Thread) promo-toki-mobile-invitation 1.1.1 on JVM (powered by Quarkus 3.27.0) started in 4.173s. Listening on: http://0.0.0.0:6989
-2026-01-26 15:37:32,474 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
-2026-01-26 15:37:32,475 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, jdbc-postgresql, micrometer, narayana-jta, rest, rest-client, rest-client-jackson, rest-jackson, scheduler, security, smallrye-context-propagation, smallrye-health, smallrye-jwt, vertx]
+2026-01-28 01:09:07,650 INFO  [mn.uni.cam.fil.JwtAuthFilter] (executor-thread-1) ========== JWT Filter Debug ==========
+2026-01-28 01:09:08,281 INFO  [mn.uni.cam.fil.JwtAuthFilter] (executor-thread-1) Raw path: /login
+2026-01-28 01:09:08,281 INFO  [mn.uni.cam.fil.JwtAuthFilter] (executor-thread-1) Canonical path: /login
+2026-01-28 01:09:08,281 INFO  [mn.uni.cam.fil.JwtAuthFilter] (executor-thread-1) Public endpoint: /login - ALLOWED
+2026-01-28 01:09:08,282 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request *****************
+2026-01-28 01:09:08,282 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) POST http://localhost:6989/login
+2026-01-28 01:09:08,284 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Incoming request Body: {
+  "msisdn" : "88112233",
+  "tokiId" : "TOKI_ID_123"
+}
+2026-01-28 01:09:08,467 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request's Response *****************
+2026-01-28 01:09:08,468 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Status: 200
+2026-01-28 01:09:08,468 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Body: {
+  "result" : "success",
+  "message" : "Login successful",
+  "data" : "eyJhbGciOiJIUzI1NiJ9.eyJ0b2tpSWQiOiJUT0tJX0lEXzEyMyIsIm1zaXNkbiI6Ijg4MTEyMjMzIiwic3ViIjoiVE9LSV9JRF8xMjMiLCJpYXQiOjE3Njk1MzM3NDgsImV4cCI6MTc2OTUzNDY0OH0.rCjmi_JxLWqDCNmKL649iwEGtoqvGqrV_GVdMecR56w"
+}
+2026-01-28 01:09:14,970 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:09:14,971 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:09:14,971 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:09:15,049 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:09:15,050 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:09:15,050 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:09:15,050 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:09:15,052 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:09:15,053 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:09:15,056 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:09:15,057 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:09:15,061 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:09:15,062 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:09:15,063 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:20:15,226 INFO  [mn.uni.cam.fil.JwtAuthFilter] (executor-thread-1) ========== JWT Filter Debug ==========
+2026-01-28 01:20:15,227 INFO  [mn.uni.cam.fil.JwtAuthFilter] (executor-thread-1) Raw path: /login
+2026-01-28 01:20:15,227 INFO  [mn.uni.cam.fil.JwtAuthFilter] (executor-thread-1) Canonical path: /login
+2026-01-28 01:20:15,227 INFO  [mn.uni.cam.fil.JwtAuthFilter] (executor-thread-1) Public endpoint: /login - ALLOWED
+2026-01-28 01:20:15,227 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request *****************
+2026-01-28 01:20:15,227 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) POST http://localhost:6989/login
+2026-01-28 01:20:15,228 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Incoming request Body: {
+  "msisdn" : "88112233",
+  "tokiId" : "TOKI_ID_123"
+}
+2026-01-28 01:20:15,229 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) ***************** Incoming Request's Response *****************
+2026-01-28 01:20:15,230 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Status: 200
+2026-01-28 01:20:15,230 INFO  [mn.uni.cam.fil.LoggingFilter] (executor-thread-1) Body: {
+  "result" : "success",
+  "message" : "Login successful",
+  "data" : "eyJhbGciOiJIUzI1NiJ9.eyJ0b2tpSWQiOiJUT0tJX0lEXzEyMyIsIm1zaXNkbiI6Ijg4MTEyMjMzIiwic3ViIjoiVE9LSV9JRF8xMjMiLCJpYXQiOjE3Njk1MzQ0MTUsImV4cCI6MTc2OTUzNTMxNX0.UKgFV2lm64Vd7ZeevHt6trppCA4aGDgBoj1mpqVoJRI"
+}
+2026-01-28 01:20:32,473 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:20:32,477 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:20:32,477 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:20:32,558 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:20:32,558 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:20:32,558 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:20:32,558 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:20:32,558 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:20:32,558 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:20:32,559 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:20:32,559 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:20:32,559 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:20:32,559 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 01:20:32,567 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 07:03:23,600 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 07:03:23,610 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 07:03:23,611 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 07:03:23,720 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 07:03:23,721 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 07:03:23,740 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 07:03:23,740 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 07:03:23,744 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 07:03:23,746 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 07:03:23,748 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 07:03:23,750 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 07:03:23,751 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 07:03:23,753 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)
+2026-01-28 07:03:23,755 WARN  [com.rab.cli.imp.ForgivingExceptionHandler] (AMQP Connection 10.21.64.30:5672) An unexpected connection driver error occurred (Exception message: Connection reset)

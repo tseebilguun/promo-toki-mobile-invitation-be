@@ -9,6 +9,7 @@ import jakarta.ws.rs.core.Response;
 import mn.unitel.campaign.models.DeleteInvitationReq;
 import mn.unitel.campaign.models.InvitationReq;
 import mn.unitel.campaign.models.LoginReq;
+import org.jboss.logging.Logger;
 
 @Path("/")
 @Consumes("application/json")

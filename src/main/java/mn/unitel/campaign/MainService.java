@@ -5,6 +5,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.Response;
+import lombok.extern.slf4j.Slf4j;
 import mn.unitel.campaign.jooq.tables.records.PromotionEntitlementsRecord;
 import mn.unitel.campaign.jooq.tables.records.ReferralInvitationsRecord;
 import mn.unitel.campaign.legacy.SmsService;
@@ -20,6 +21,7 @@ import java.util.UUID;
 import static mn.unitel.campaign.jooq.Tables.REFERRAL_INVITATIONS;
 import static mn.unitel.campaign.jooq.Tables.PROMOTION_ENTITLEMENTS;
 
+@Slf4j
 @ApplicationScoped
 public class MainService {
     @Inject

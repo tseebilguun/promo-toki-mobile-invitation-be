@@ -20,7 +20,7 @@ public class JwtAuthFilter implements ContainerRequestFilter {
     private static final Logger logger = Logger.getLogger(JwtAuthFilter.class);
 
     private static final Set<String> PUBLIC_PATHS = Set.of(
-            "/getGeneralInfo",
+            "/getgeneralinfo",
             "/login"
     );
 
@@ -29,58 +29,85 @@ public class JwtAuthFilter implements ContainerRequestFilter {
 
     @Override
     public void filter(ContainerRequestContext ctx) {
-        String rawPath = ctx.getUriInfo().getPath();
-        String path = rawPath == null ? "" : rawPath.trim().toLowerCase();
+        String rawPath = ctx.getUriInfo() != null ? ctx.getUriInfo().getPath() : null;
+        String path = canonicalPath(rawPath);
+
+        logger.info("========== JWT Filter Debug ==========");
+        logger.info("Raw path: " + rawPath);
+        logger.info("Canonical path: " + path);
 
         if (PUBLIC_PATHS.contains(path)) {
-            logger.debug("Public endpoint: " + path);
+            logger.info("Public endpoint: " + path + " - ALLOWED");
             return;
         }
 
-        String firstSegment = extractFirstSegment(path);
+        logger.info("Protected endpoint: " + path + " - checking auth...");
 
         String authHeader = ctx.getHeaderString("Authorization");
+        logger.info("Authorization header: " + (authHeader != null ? authHeader.substring(0, Math.min(30, authHeader.length())) + "..." : "NULL"));
+
         if (authHeader == null || !authHeader.regionMatches(true, 0, "Bearer ", 0, 7)) {
+            logger.warn("Missing or invalid Authorization header");
             abort(ctx, "Missing or invalid Authorization header");
             return;
         }
 
         String token = authHeader.substring(7).trim();
         if (token.isEmpty()) {
+            logger.warn("Empty token");
             abort(ctx, "Empty token");
             return;
         }
 
-        if (jwtService.isExpiredOrInvalid(token)) {
+        logger.info("Token extracted (first 20 chars): " + token.substring(0, Math.min(20, token.length())) + "...");
+
+        boolean isExpired = jwtService.isExpiredOrInvalid(token);
+        logger.info("Token expired/invalid check: " + isExpired);
+
+        if (isExpired) {
+            logger.warn("Token expired or invalid - REJECTING");
             abort(ctx, "Token expired or invalid");
             return;
         }
 
         String subject = jwtService.extractSubject(token);
-        String nationalId = jwtService.getStringClaim(token, "nationalId");
         String tokiId = jwtService.getStringClaim(token, "tokiId");
-        String phone = jwtService.getStringClaim(token, "phone");
-        String accountName = jwtService.getStringClaim(token, "accountName");
-        if (nationalId == null) {
-            abort(ctx, "Missing nationalId claim");
-            return;
-        }
+        String msisdn = jwtService.getStringClaim(token, "msisdn");
+
+        logger.info("Token claims extracted:");
+        logger.info("  - subject: " + subject);
+        logger.info("  - tokiId: " + tokiId);
+        logger.info("  - msisdn: " + msisdn);
 
         ctx.setProperty("jwt.tokiId", tokiId);
-        ctx.setProperty("jwt.phone", phone);
-        ctx.setProperty("jwt.accountName", accountName);
-        ctx.setProperty("jwt.nationalId", nationalId);
+        ctx.setProperty("jwt.msisdn", msisdn);
         ctx.setProperty("jwt.subject", subject);
+
+        logger.info("JWT validation SUCCESS - request allowed");
+        logger.info("======================================");
     }
 
-    private String extractFirstSegment(String path) {
-        if (path.isEmpty()) return "";
-        int slash = path.indexOf('/');
-        return (slash == -1 ? path : path.substring(0, slash));
+    private static String canonicalPath(String rawPath) {
+        if (rawPath == null) {
+            return "/";
+        }
+        String p = rawPath.trim();
+        if (p.isEmpty()) {
+            return "/";
+        }
+        // UriInfo#getPath() is commonly returned without leading '/', but can vary.
+        if (!p.startsWith("/")) {
+            p = "/" + p;
+        }
+        // normalize: collapse trailing slashes
+        while (p.length() > 1 && p.endsWith("/")) {
+            p = p.substring(0, p.length() - 1);
+        }
+        return p.toLowerCase();
     }
 
     private void abort(ContainerRequestContext ctx, String message) {
-        logger.debug("Aborting request: " + message);
+        logger.warn("ABORTING REQUEST: " + message);
         ctx.abortWith(Response.status(Response.Status.UNAUTHORIZED)
                 .entity(new CustomResponse<>("fail", message, null))
                 .build());
