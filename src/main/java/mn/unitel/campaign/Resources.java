@@ -9,7 +9,6 @@ import jakarta.ws.rs.core.Response;
 import mn.unitel.campaign.models.DeleteInvitationReq;
 import mn.unitel.campaign.models.InvitationReq;
 import mn.unitel.campaign.models.LoginReq;
-import org.jboss.logging.Logger;
 
 @Path("/")
 @Consumes("application/json")
@@ -19,7 +18,7 @@ public class Resources {
     MainService mainService;
 
     @POST
-    @Path("/login")
+    @Path("/auth/login")
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(LoginReq loginRequest) {
         return mainService.login(loginRequest);

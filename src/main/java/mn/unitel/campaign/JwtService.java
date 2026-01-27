@@ -38,10 +38,7 @@ public class JwtService {
                 "msisdn", msisdn,
                 "tokiId", tokiId
         );
-        return generateToken(subject, claims);
-    }
 
-    private String generateToken(String subject, Map<String, Object> claims) {
         long nowMillis = System.currentTimeMillis();
         long expMillis = nowMillis + 15 * 60 * 1000; // 15 min
 
