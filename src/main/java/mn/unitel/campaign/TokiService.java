@@ -29,7 +29,7 @@ public class TokiService {
                     .fullName(res.getData().getName())
                     .build();
         } catch (Exception e) {
-            logger.errorv(e, "Failed to get Toki ID for msisdn={0}", msisdn);
+            logger.errorv("Failed to get Toki ID for msisdn: {0}", msisdn);
             return TokiUserInfo.builder()
                     .tokiId("NOT_FOUND")
                     .fullName("NOT_FOUND")

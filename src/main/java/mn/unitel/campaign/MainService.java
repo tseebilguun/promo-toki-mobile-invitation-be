@@ -366,4 +366,96 @@ public class MainService {
                 .entity(new CustomResponse<>("Success", "Invitation deleted", null))
                 .build();
     }
+
+    public Response resendInvitation(InvitationReq req, @Context ContainerRequestContext ctx) {
+        String senderMsisdn = "";
+        String senderTokiId = "";
+
+        try {
+            senderMsisdn = (String) ctx.getProperty("jwt.msisdn");
+            senderTokiId = (String) ctx.getProperty("jwt.tokiId");
+        } catch (Exception e) {
+            return Response.status(Response.Status.UNAUTHORIZED)
+                    .entity(new CustomResponse<>("Unauthorized", "Unauthorized", null))
+                    .build();
+        }
+
+        if (req.getMsisdn().isBlank() || req.getMsisdn().length() != 8) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(
+                            new CustomResponse<>(
+                                    "fail",
+                                    "Утасны дугаараа шалгаад дахин оролдоно уу.",
+                                    null
+                            )
+                    )
+                    .build();
+        }
+
+        TokiUserInfo receiverTokiInfo = tokiService.getTokiId(req.getMsisdn());
+
+        if (!receiverTokiInfo.isSuccess()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(
+                            new CustomResponse<>(
+                                    "fail",
+                                    req.getMsisdn() + " дугаарт Toki хаяг байхгүй байна.",
+                                    null
+                            )
+                    )
+                    .build();
+        }
+
+        TokiUserInfo senderTokiInfo = tokiService.getTokiId(senderMsisdn);
+        if (!senderTokiInfo.isSuccess()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(
+                            new CustomResponse<>(
+                                    "fail",
+                                    "Алдаа гарлаа. Дахин оролдоно уу.",
+                                    null
+                            )
+                    )
+                    .build();
+        }
+
+        UUID invitationId = req.getInvitationId();
+        ReferralInvitationsRecord updated =
+                dsl.update(REFERRAL_INVITATIONS)
+                        .set(REFERRAL_INVITATIONS.STATUS, "SENT")
+                        .set(REFERRAL_INVITATIONS.EXPIRES_AT, LocalDateTime.now().plusDays(3))
+                        .set(REFERRAL_INVITATIONS.RECEIVER_TOKI_ID, receiverTokiInfo.getTokiId())
+                        .where(REFERRAL_INVITATIONS.ID.eq(invitationId))
+                        .returning()
+                        .fetchOne();
+
+        if (updated == null) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(new CustomResponse<>("fail", "Invitation not found", null))
+                    .build();
+        }
+
+
+        tokiService.sendPushNoti(receiverTokiInfo.getTokiId(),
+                "Танд " + helper.extractFirstName(senderTokiInfo.getFullName()) + "-с урилга ирлээ",
+                senderMsisdn + " дугаартай " + helper.extractFirstName(senderTokiInfo.getFullName()) + " найзаас нь Toki Mobile-д " +
+                        "нэгдэх урилга илгээсэн байна. 55-тай дугаар аваад 30 хоногийн турш дата цэнэглэлт бүрээ 3 үржүүлж аваарай");
+
+        FormattedDateTime expireDateTime = FormattedDateTime.from(updated.getExpiresAt());
+
+        smsService.send("4477", senderMsisdn, req.getMsisdn() + " dugaart Toki Mobile-d negdeh urilga ilgeegdlee. " +
+                "Urilgiin huchintei hugatsaa " + expireDateTime.getDate() + "-nii udriin " + expireDateTime.getTime() + "-d duusna shuu.", true);
+
+
+        return Response.ok()
+                .entity(
+                        new CustomResponse<>(
+                                "Success",
+                                "Invitation sent",
+                                null
+                        )
+                ).build();
+
+
+    }
 }

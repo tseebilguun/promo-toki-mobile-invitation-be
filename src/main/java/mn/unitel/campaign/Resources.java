@@ -39,12 +39,18 @@ public class Resources {
 
     @POST
     @Path("/sendInvitation")
-    public Response sendInvitation(InvitationReq req, @Context ContainerRequestContext ctx){
+    public Response sendInvitation(InvitationReq req, @Context ContainerRequestContext ctx) {
         return mainService.sendInvitation(req, ctx);
     }
 
+    @POST
+    @Path("/resendInvitation")
+    public Response resendInvitation(InvitationReq req, @Context ContainerRequestContext ctx) {
+        return mainService.resendInvitation(req, ctx);
+    }
+
     @DELETE
-    @Path("deleteInvitation")
+    @Path("/deleteInvitation")
     public Response deleteInvitation(DeleteInvitationReq req, @Context ContainerRequestContext ctx) {
         return mainService.deleteInvitation(req, ctx);
     }
