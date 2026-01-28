@@ -213,6 +213,25 @@ public class MainService {
         logger.infov("getInfo start: tokiId={0}, msisdn={1}", tokiId, msisdn);
 
         try {
+            LocalDateTime now = LocalDateTime.now();
+
+            int updatedForUser = dsl.update(REFERRAL_INVITATIONS)
+                    .set(REFERRAL_INVITATIONS.STATUS, "EXPIRED")
+                    .where(REFERRAL_INVITATIONS.SENDER_TOKI_ID.eq(tokiId))
+                    .and(REFERRAL_INVITATIONS.SENDER_MSISDN.eq(msisdn))
+                    .and(REFERRAL_INVITATIONS.STATUS.eq("SENT"))
+                    .and(REFERRAL_INVITATIONS.EXPIRES_AT.lt(now))
+                    .execute();
+
+            if (updatedForUser > 0) {
+                logger.infov("Expired invitations updated for user: updated={0}, tokiId={1}, msisdn={2}",
+                        updatedForUser, tokiId, msisdn);
+            }
+        } catch (Exception e) {
+            logger.errorv(e, "Failed to update expired invitations for user: tokiId={0}, msisdn={1}", tokiId, msisdn);
+        }
+
+        try {
             List<ReferralInvitationsRecord> invitations =
                     dsl.selectFrom(REFERRAL_INVITATIONS)
                             .where(REFERRAL_INVITATIONS.SENDER_TOKI_ID.eq(tokiId))
