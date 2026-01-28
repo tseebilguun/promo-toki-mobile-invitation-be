@@ -1,0 +1,45 @@
+{
+  "prod": {
+    "rabbitmq": {
+      "username": "sv_noti_client_test",
+      "password": "sv_noti_client_test",
+      "vhost": "/",
+      "host": "10.21.68.81",
+      "port": 5672
+    },
+    "exchange": {
+      "name": "sv_noti",
+      "type": "headers",
+      "queue": {
+        "name": "promo-a25-071-toki-mobile.recharge",
+        "routing_key": "noti",
+        "ack": true,
+        "params": {
+          "notificationType": "RECHARGE"
+        }
+      }
+    }
+  },
+  "dev": {
+    "rabbitmq": {
+      "username": "sv_noti_client_test",
+      "password": "sv_noti_client_test",
+      "vhost": "/",
+      "host": "10.21.68.81",
+      "port": 5672
+    },
+    "exchange": {
+      "name": "sv_noti",
+      "type": "headers",
+      "queue": {
+        "name": "promo-a25-071-toki-mobile.recharge",
+        "routing_key": "noti",
+        "ack": true,
+        "params": {
+          "notificationType": "RECHARGE"
+        }
+      }
+    }
+  }
+}
+

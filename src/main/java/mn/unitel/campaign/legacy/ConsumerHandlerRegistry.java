@@ -13,7 +13,7 @@ public class ConsumerHandlerRegistry {
     @Inject
     public ConsumerHandlerRegistry(Consumers c) {
         handlers = Map.of(
-                "sms", c::onSms,
+                "recharge", c::onRecharge,
                 "base_product_status_change", c::onStatusChange
         );
     }
