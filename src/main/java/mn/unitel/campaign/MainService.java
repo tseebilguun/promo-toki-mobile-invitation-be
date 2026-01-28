@@ -116,6 +116,18 @@ public class MainService {
 
         String receiverMsisdn = req.getMsisdn();
 
+        if (receiverMsisdn.equals(senderMsisdn)) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(
+                            new CustomResponse<>(
+                                    "fail",
+                                    "Өөртөө урилга илгээх боломжгүй.",
+                                    null
+                            )
+                    )
+                    .build();
+        }
+
         int count = dsl.fetchCount(
                 REFERRAL_INVITATIONS,
                 REFERRAL_INVITATIONS.RECEIVER_MSISDN.eq(receiverMsisdn)
@@ -127,7 +139,7 @@ public class MainService {
                     .entity(
                             new CustomResponse<>(
                                     "fail",
-                                    receiverMsisdn + " дугаарт урилга илгээгдсэн байна.",
+                                    "Урилга илгээх боломжгүй байна.",
                                     null
                             )
                     )
@@ -148,7 +160,7 @@ public class MainService {
                     .entity(
                             new CustomResponse<>(
                                     "fail",
-                                    receiverMsisdn + " дугаарт Toki хаяг байхгүй байна.",
+                                    "Toki-д бүртгэлгүй хэрэглэгч байна",
                                     null
                             )
                     )
@@ -194,7 +206,7 @@ public class MainService {
                 .entity(
                         new CustomResponse<>(
                                 "Success",
-                                "Invitation sent",
+                                "Урилга амжилттай илгээгдлээ.",
                                 null
                         )
                 ).build();
@@ -364,7 +376,7 @@ public class MainService {
                     invitationId, senderMsisdn, senderTokiId);
 
             return Response.status(Response.Status.NOT_FOUND)
-                    .entity(new CustomResponse<>("fail", "Invitation not found", null))
+                    .entity(new CustomResponse<>("fail", "Алдаа гарлаа. Дахин оролдоно уу.", null))
                     .build();
         }
 
@@ -382,7 +394,7 @@ public class MainService {
         );
 
         return Response.ok()
-                .entity(new CustomResponse<>("Success", "Invitation deleted", null))
+                .entity(new CustomResponse<>("Success", "Амжилттай устгалаа.", null))
                 .build();
     }
 
@@ -489,7 +501,7 @@ public class MainService {
                 .entity(
                         new CustomResponse<>(
                                 "Success",
-                                "Invitation sent",
+                                "Урилга амжилттай илгээгдлээ.",
                                 null
                         )
                 ).build();
