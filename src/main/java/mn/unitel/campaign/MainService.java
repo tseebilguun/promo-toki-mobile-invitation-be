@@ -399,7 +399,7 @@ public class MainService {
                     .build();
         }
 
-        if (req.getMsisdn().isBlank() || req.getMsisdn().length() != 8) {
+        if (req.getMsisdn().isBlank() || req.getMsisdn().length() != 8 || req.getInvitationId() == null) {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity(
                             new CustomResponse<>(
@@ -409,6 +409,24 @@ public class MainService {
                             )
                     )
                     .build();
+        }
+
+        try {
+            LocalDateTime now = LocalDateTime.now();
+
+            int updatedForUser = dsl.update(REFERRAL_INVITATIONS)
+                    .set(REFERRAL_INVITATIONS.STATUS, "EXPIRED")
+                    .where(REFERRAL_INVITATIONS.ID.eq(req.getInvitationId()))
+                    .and(REFERRAL_INVITATIONS.STATUS.eq("SENT"))
+                    .and(REFERRAL_INVITATIONS.EXPIRES_AT.lt(now))
+                    .execute();
+
+            if (updatedForUser > 0) {
+                logger.infov("Expired invitations updated for user: updated={0}, invitationId={1}, msisdn={2}",
+                        updatedForUser, req.getInvitationId(), req.getMsisdn());
+            }
+        } catch (Exception e) {
+            logger.errorv(e, "Failed to update expired invitations for user: invitationId={0}, msisdn={1}", req.getInvitationId(), req.getMsisdn());
         }
 
         TokiUserInfo receiverTokiInfo = tokiService.getTokiId(req.getMsisdn());
@@ -445,12 +463,13 @@ public class MainService {
                         .set(REFERRAL_INVITATIONS.EXPIRES_AT, LocalDateTime.now().plusDays(3))
                         .set(REFERRAL_INVITATIONS.RECEIVER_TOKI_ID, receiverTokiInfo.getTokiId())
                         .where(REFERRAL_INVITATIONS.ID.eq(invitationId))
+                        .and(REFERRAL_INVITATIONS.STATUS.eq("EXPIRED"))
                         .returning()
                         .fetchOne();
 
         if (updated == null) {
             return Response.status(Response.Status.NOT_FOUND)
-                    .entity(new CustomResponse<>("fail", "Invitation not found", null))
+                    .entity(new CustomResponse<>("fail", "Алдаа гарлаа. Дахин оролдоно уу.", null))
                     .build();
         }
 
