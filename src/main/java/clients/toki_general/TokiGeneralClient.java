@@ -9,7 +9,7 @@ import org.eclipse.microprofile.rest.client.annotation.RegisterProvider;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 @Path("/third-party-service/v1")
-@RegisterRestClient(configKey = "toki-general")
+@RegisterRestClient(configKey = "toki.general")
 @ClientHeaderParam(name = "Accept", value = "*/*")
 @RegisterProvider(OutgoingRequestLoggingFilter.class)
 @RegisterProvider(OutgoingResponseLoggingFilter.class)

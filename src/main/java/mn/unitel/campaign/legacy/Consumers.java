@@ -61,7 +61,7 @@ public class Consumers {
                 return;
             }
 
-            consumerHandler.gotActive(msisdn, statusNoti.getAccountName());
+            consumerHandler.gotActive(msisdn);
 
         } catch (Exception e) {
             logger.error("JSON parsing failed", e);
