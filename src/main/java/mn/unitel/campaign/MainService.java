@@ -10,6 +10,7 @@ import mn.unitel.campaign.jooq.tables.records.PromotionEntitlementsRecord;
 import mn.unitel.campaign.jooq.tables.records.ReferralInvitationsRecord;
 import mn.unitel.campaign.legacy.SmsService;
 import mn.unitel.campaign.models.*;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.logging.Logger;
 import org.jooq.DSLContext;
 
@@ -40,6 +41,12 @@ public class MainService {
 
     @Inject
     SmsService smsService;
+
+    @ConfigProperty(name = "link.purchase.number")
+    String purchaseNumberLink;
+
+    @ConfigProperty(name = "link.referral.number")
+    String referralNumberLink;
 
     public Response getInfoByJwt(@Context ContainerRequestContext ctx) {
         String msisdn = "";
@@ -196,7 +203,11 @@ public class MainService {
         tokiService.sendPushNoti(receiverTokiInfo.getTokiId(),
                 "Танд " + helper.extractFirstName(senderTokiInfo.getFullName()) + "-с урилга ирлээ",
                 senderMsisdn + " дугаартай " + helper.extractFirstName(senderTokiInfo.getFullName()) + " найзаас нь Toki Mobile-д " +
-                        "нэгдэх урилга илгээсэн байна. 55-тай дугаар аваад 30 хоногийн турш дата цэнэглэлт бүрээ 3 үржүүлж аваарай");
+                        "нэгдэх урилга илгээсэн байна. 55-тай дугаар аваад 30 хоногийн турш дата цэнэглэлт бүрээ 3 үржүүлж аваарай",
+                purchaseNumberLink,
+                "Дугаар авах"
+
+        );
 
 
         smsService.send("4477", senderMsisdn, receiverMsisdn + " dugaart Toki Mobile-d negdeh urilga ilgeegdlee. " +
@@ -489,7 +500,10 @@ public class MainService {
         tokiService.sendPushNoti(receiverTokiInfo.getTokiId(),
                 "Танд " + helper.extractFirstName(senderTokiInfo.getFullName()) + "-с урилга ирлээ",
                 senderMsisdn + " дугаартай " + helper.extractFirstName(senderTokiInfo.getFullName()) + " найзаас нь Toki Mobile-д " +
-                        "нэгдэх урилга илгээсэн байна. 55-тай дугаар аваад 30 хоногийн турш дата цэнэглэлт бүрээ 3 үржүүлж аваарай");
+                        "нэгдэх урилга илгээсэн байна. 55-тай дугаар аваад 30 хоногийн турш дата цэнэглэлт бүрээ 3 үржүүлж аваарай",
+                purchaseNumberLink,
+                "Дугаар авах"
+        );
 
         FormattedDateTime expireDateTime = FormattedDateTime.from(updated.getExpiresAt());
 

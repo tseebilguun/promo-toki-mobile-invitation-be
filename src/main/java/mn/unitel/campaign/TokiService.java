@@ -38,7 +38,7 @@ public class TokiService {
         }
     }
 
-    public void sendPushNoti(String tokiId, String title, String body) {
+    public void sendPushNoti(String tokiId, String title, String body, String url, String buttonText) {
         logger.info("Sending toki noti to user: " + tokiId);
         String token = "Bearer " + tokiGeneralClient.getToken().getData().getAccessToken();
 
@@ -48,8 +48,8 @@ public class TokiService {
                     TokiNotiReq.builder()
                             .title(title)
                             .body(body)
-                            .url("https://link.toki.mn/CX5z") // TODO Change
-                            .buttonName("OK")
+                            .url(url) // TODO Change
+                            .buttonName(buttonText)
                             .accountId(tokiId)
                             .icon("test")
                             .merchantId("66a71d8328f4dda2cd2b1d9d")

@@ -12,9 +12,10 @@ import java.time.format.DateTimeFormatter;
 @Setter
 public class MobileDataDetail {
     String expireDate;
-    String rechargeAmount;
+    int rechargeAmount;
     String dataAmount;
     String dataAmountStr;
+    String baseDataAmountStr;
 
     private static final DateTimeFormatter FORMATTER =
             DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
@@ -32,5 +33,6 @@ public class MobileDataDetail {
         this.rechargeAmount = plan.getRechargeAmount();
         this.dataAmount = plan.getDataAmount();
         this.dataAmountStr = plan.getDataAmountStr();
+        this.baseDataAmountStr = plan.getBaseDataAmountStr();
     }
 }
