@@ -85,9 +85,6 @@ public class ConsumerHandler {
                 updated.getAcceptedAt()
         );
 
-        LocalDateTime startAt = now;
-        LocalDateTime endAt = now.plusDays(29).withHour(23).withMinute(59).withSecond(59);
-
         // 1) Referrer (sender)
         var senderPromoInfo = upsertOrExtendEntitlement(
                 updated.getSenderTokiId(),
