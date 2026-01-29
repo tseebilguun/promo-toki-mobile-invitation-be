@@ -17,6 +17,9 @@ public class Resources {
     @Inject
     MainService mainService;
 
+    @Inject
+    ConsumerHandler consumer;
+
     @POST
     @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
@@ -53,5 +56,19 @@ public class Resources {
     @Path("/deleteInvitation")
     public Response deleteInvitation(DeleteInvitationReq req, @Context ContainerRequestContext ctx) {
         return mainService.deleteInvitation(req, ctx);
+    }
+
+    @GET
+    @Path("/testActive")
+    public Response health(@QueryParam("msisdn") String msisdn) {
+        consumer.gotActive(msisdn);
+        return Response.ok().build();
+    }
+
+    @GET
+    @Path("/testRecharge")
+    public Response recharge(@QueryParam("msisdn") String msisdn, @QueryParam("rechargedProduct") String rechargedProduct) {
+        consumer.onRecharge(msisdn, rechargedProduct);
+        return Response.ok().build();
     }
 }

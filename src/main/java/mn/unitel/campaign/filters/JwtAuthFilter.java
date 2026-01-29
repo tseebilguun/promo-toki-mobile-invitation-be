@@ -20,7 +20,9 @@ public class JwtAuthFilter implements ContainerRequestFilter {
 
     private static final Set<String> PUBLIC_PATHS = Set.of(
             "/login",
-            "/getGeneralInfo"
+            "/getGeneralInfo",
+            "/testActive",
+            "/testRecharge"
     );
 
     @Inject
@@ -30,7 +32,7 @@ public class JwtAuthFilter implements ContainerRequestFilter {
     public void filter(ContainerRequestContext ctx) {
         String rawPath = ctx.getUriInfo() != null ? ctx.getUriInfo().getPath() : null;
         String path = rawPath == null ? "/" : (rawPath.startsWith("/") ? rawPath : "/" + rawPath);
-        path = path.trim().toLowerCase();
+        path = path.trim();
 
         if (PUBLIC_PATHS.contains(path)) {
             logger.debug("Public endpoint: " + path);
