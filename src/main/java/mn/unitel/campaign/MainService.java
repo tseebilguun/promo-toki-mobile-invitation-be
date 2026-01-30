@@ -82,7 +82,7 @@ public class MainService {
                     )
                     .build();
 
-        if (!helper.getOperatorName(loginRequest.getMsisdn()).equalsIgnoreCase("toki mobile")){
+        if (!helper.getOperatorName(loginRequest.getMsisdn()).equalsIgnoreCase("toki mobile")) {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity(
                             new CustomResponse<>(
@@ -219,7 +219,11 @@ public class MainService {
                 "Дугаар авах"
 
         );
-
+        smsService.send("4477",
+                receiverMsisdn,
+                senderMsisdn + " dugaartai naizaas n Toki Mobile-d negdeh urilga ilgeesen baina. " +
+                        "55-tai dugaaraa avaad 30 honogiin tursh data avah burdee avsan datagaa 3 urjuulj avaarai. " + purchaseNumberLink,
+                true);
 
         smsService.send("4477", senderMsisdn, receiverMsisdn + " dugaart Toki Mobile-d negdeh urilga ilgeegdlee. " +
                 "Urilgiin huchintei hugatsaa " + expireDateTime.getDate() + "-nii udriin " + expireDateTime.getTime() + "-d duusna shuu.", true);
