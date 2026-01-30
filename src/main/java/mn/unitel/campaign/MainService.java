@@ -82,6 +82,18 @@ public class MainService {
                     )
                     .build();
 
+        if (!helper.getOperatorName(loginRequest.getMsisdn()).equalsIgnoreCase("toki mobile")){
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(
+                            new CustomResponse<>(
+                                    "fail",
+                                    "Зөвхөн Toki Mobile хэрэглэгчид нэвтрэх боломжтой.",
+                                    null
+                            )
+                    )
+                    .build();
+        }
+
         return Response.ok().entity(
                         new CustomResponse<>(
                                 "success",
@@ -158,7 +170,6 @@ public class MainService {
                     .entity(new CustomResponse<>("Unauthorized", "Unauthorized", null))
                     .build();
         }
-
 
         TokiUserInfo receiverTokiInfo = tokiService.getTokiId(receiverMsisdn);
 
@@ -428,6 +439,28 @@ public class MainService {
                             new CustomResponse<>(
                                     "fail",
                                     "Утасны дугаараа шалгаад дахин оролдоно уу.",
+                                    null
+                            )
+                    )
+                    .build();
+        }
+
+        int count = dsl.fetchCount(
+                REFERRAL_INVITATIONS,
+                REFERRAL_INVITATIONS.RECEIVER_MSISDN.eq(req.getMsisdn())
+                        .and(REFERRAL_INVITATIONS.STATUS.in("SENT", "ACCEPTED"))
+        );
+
+        if (count > 0) {
+            dsl.deleteFrom(REFERRAL_INVITATIONS)
+                    .where(REFERRAL_INVITATIONS.ID.eq(req.getInvitationId()))
+                    .execute();
+
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(
+                            new CustomResponse<>(
+                                    "fail",
+                                    "Урилга илгээх боломжгүй байна.",
                                     null
                             )
                     )

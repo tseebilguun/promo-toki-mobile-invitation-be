@@ -17,10 +17,10 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 @RegisterProvider(OutgoingRequestLoggingFilter.class)
 @RegisterProvider(OutgoingResponseLoggingFilter.class)
 @ClientHeaderParam(name = "Content-Type", value = MediaType.APPLICATION_JSON)
-@ClientHeaderParam(name = "Authorization", value = "Basic Y2FtcGFpZ246d2RTR3lAOHRERERBMz00Vg==")
+@ClientHeaderParam(name = "Authorization", value = "Basic Y2FtcGFpZ246d2RTR3lAOHREQERBM100Vg==")
 public interface DsdClient {
     @GET
     @Path("/user-id")
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     NumberRelationRes getUserId(@QueryParam("msisdn") String msisdn);
 }

@@ -42,7 +42,14 @@ public class ConsumerHandler {
     boolean debugMode;
 
     public void gotActive(String msisdn) {
-        NumberRelationRes res = dsdClient.getUserId(msisdn);
+        NumberRelationRes res;
+        try {
+            res = dsdClient.getUserId(msisdn);
+        } catch (Exception e) {
+            logger.errorf(e, "Failed to get user ID from DSD for msisdn=%s", msisdn);
+            return;
+        }
+
         if (!res.isSuccess()) {
             logger.infof(res.getResultStr());
             return;

@@ -20,6 +20,9 @@ public class Resources {
     @Inject
     ConsumerHandler consumer;
 
+    @Inject
+    Scheduler scheduler;
+
     @POST
     @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
@@ -69,6 +72,18 @@ public class Resources {
     @Path("/testRecharge")
     public Response recharge(@QueryParam("msisdn") String msisdn, @QueryParam("rechargedProduct") String rechargedProduct) {
         consumer.onRecharge(msisdn, rechargedProduct);
+        return Response.ok().build();
+    }
+
+    @GET
+    @Path("/checkScheduler")
+    public Response checkScheduler() {
+        scheduler.notifyAfterEntitlementExpired();
+        scheduler.updateExpiredInvitations();
+        scheduler.notifyAfterInvitationExpired();
+        scheduler.notifyBefore3DaysOfEntitlementExpired();
+        scheduler.notifyBefore7DaysOfEntitlementExpired();
+        scheduler.notifyBefore24hBeforeInvitationExpired();
         return Response.ok().build();
     }
 }

@@ -40,7 +40,7 @@ public class Scheduler {
     TokiService tokiService;
 
     @Scheduled(every = "60s")
-    void updateExpiredInvitations() {
+    public void updateExpiredInvitations() {
         LocalDateTime now = LocalDateTime.now();
 
         try {
@@ -59,7 +59,7 @@ public class Scheduler {
     }
 
     @Scheduled(every = "60s")
-    void notifyBefore24hBeforeInvitationExpired() {
+    public void notifyBefore24hBeforeInvitationExpired() {
         LocalDateTime now = LocalDateTime.now();
 
         LocalDateTime windowStart = now.plusHours(23).plusMinutes(59); // now + 23h59m
@@ -105,7 +105,7 @@ public class Scheduler {
     }
 
     @Scheduled(every = "60s")
-    void notifyAfterInvitationExpired() {
+    public void notifyAfterInvitationExpired() {
         LocalDateTime now = LocalDateTime.now();
 
         LocalDateTime windowStart = now.minusMinutes(1);
@@ -114,8 +114,7 @@ public class Scheduler {
         try {
             Result<ReferralInvitationsRecord> rows = dsl
                     .selectFrom(REFERRAL_INVITATIONS)
-                    .where(REFERRAL_INVITATIONS.STATUS.eq("SENT"))
-                    .and(REFERRAL_INVITATIONS.EXPIRES_AT.ge(windowStart))
+                    .where(REFERRAL_INVITATIONS.EXPIRES_AT.ge(windowStart))
                     .and(REFERRAL_INVITATIONS.EXPIRES_AT.lt(windowEnd))
                     .fetch();
 
@@ -134,7 +133,7 @@ public class Scheduler {
 
                 try {
                     smsService.send("4477", senderMsisdn, textForSender, true);
-                    smsService.send("4477", receiverMsisdn, textForReceiver, false);
+                    smsService.send("4477", receiverMsisdn, textForReceiver, true);
                     tokiService.sendPushNoti(
                             r.getReceiverTokiId(),
                             r.getSenderMsisdn() + "-с илгээсэн урилгын хугацаа дууслаа.",
@@ -155,7 +154,7 @@ public class Scheduler {
     }
 
     @Scheduled(every = "60s")
-    void notifyAfterEntitlementExpired() {
+    public void notifyAfterEntitlementExpired() {
         LocalDateTime now = LocalDateTime.now();
 
         LocalDateTime windowStart = now.minusMinutes(1);
@@ -167,6 +166,7 @@ public class Scheduler {
                     .where(PROMOTION_ENTITLEMENTS.END_AT.ge(windowStart))
                     .and(PROMOTION_ENTITLEMENTS.END_AT.lt(windowEnd))
                     .fetch();
+
 
             if (rows.isEmpty()) return;
 
@@ -197,7 +197,7 @@ public class Scheduler {
     }
 
     @Scheduled(every = "60s")
-    void notifyBefore3DaysOfEntitlementExpired() {
+    public void notifyBefore3DaysOfEntitlementExpired() {
         LocalDateTime now = LocalDateTime.now();
 
         LocalDateTime windowStart = now.plusDays(3).minusMinutes(1);
@@ -233,7 +233,7 @@ public class Scheduler {
     }
 
     @Scheduled(every = "60s")
-    void notifyBefore7DaysOfEntitlementExpired() {
+    public void notifyBefore7DaysOfEntitlementExpired() {
         LocalDateTime now = LocalDateTime.now();
 
         LocalDateTime windowStart = now.plusDays(7).minusMinutes(1);

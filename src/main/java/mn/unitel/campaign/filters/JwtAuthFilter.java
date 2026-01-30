@@ -22,7 +22,8 @@ public class JwtAuthFilter implements ContainerRequestFilter {
             "/login",
             "/getGeneralInfo",
             "/testActive",
-            "/testRecharge"
+            "/testRecharge",
+            "/checkScheduler"
     );
 
     @Inject
